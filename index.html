@@ -125,6 +125,7 @@ h5{
 	display: inline-block;
 }
 #music{
+	display: none;
 	position: absolute;
 			left:  50%;
 			top: 10%;
@@ -607,10 +608,14 @@ function initResizeElement() {
 </script>
    <script>
    window.addEventListener("keydown", checkKeyPressed, false);
-
    function checkKeyPressed(evt) {
       if(evt.keyCode == "13") {
+      	if ( $("#home").css('display') == 'none' || $("#home").css("visibility") == "hidden"){
+      		$("#home").show();
+      	}
+      	else{
          window.location.reload();
+      	}
       }
    }
    </script>
