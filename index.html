@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<base target="_parent" />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title></title>
-		<script>
-		document.domain = "https://apineapple.github.io";
-	</script>
 	<style >
 				@font-face {
   font-family: windows;
@@ -15,8 +15,6 @@
 	body{
 		font-family: windows;
 		background-color: white;
-		width: 100%;
-		height: 100%;
 		overflow: hidden;
 		background-image:
       linear-gradient(45deg, #000 25%, transparent 25%), 
@@ -82,40 +80,46 @@
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  user-select: none; /* Non-prefixed version, currently                         supported by Chrome and Opera */
 }
-#music h3{
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 358px;
-  margin-top: 12.5px;
+.fa{
+      font-size: 35px;
+      width: 70px;
+      height: 70px;
+      text-decoration: none;
+      color: black;
+      z-index: 999;
+      left: 10px;
+      position: absolute;
+      display: inline-block;
 }
-			#music iframe{
-			background-color: white;
-			/*border: 6px black solid;
-			border-radius: 10px;*/
-  border: none;
-  height: 700px; width: 440px;
-  padding-bottom: 31px;
-  zoom: 0.7;
-  -moz-transform: scale(0.7);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.7);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.7);
-  -webkit-transform-origin: 0 0;
- /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-	margin-left: 132px;
+h2{
+	text-align: center;
+	margin-left: 0px;
 	margin-top: 0px;
-    z-index: 999;
-    display: flex;
- }
+	font-size: 18px;
+	background-color: white;
+	color: black;
+	padding-top: 5px;
+	padding-bottom: 2.5px;
+	border-bottom: 2.5px solid black;
+}
+h4{
+	color: black;
+	position: absolute;
+	left: 7.5px;
+	top: -19px;
+	font-size: 18px;
+	cursor: pointer;
+}
+h5{
+	color: black;
+	position: absolute;
+	left: 80px;
+	top: 10px;
+	font-size: 18px;
+	display: inline-block;
+}
 #music{
 	position: absolute;
 			left:  50%;
@@ -126,40 +130,246 @@
       border: 5px solid black;
       /*#c1c7c8*/
       z-index: 200;
-      width: 400px;
-      height: 420px;
+        height: 400px;
+  width: 300px;
         min-height: 400px;
   min-width: 300px;
   max-height: 500px;
   max-width: 500px;
 }
-#music h2{
-	text-align: center;
-	margin-left: 0px;
+#music iframe{
+	background-color: white;
+  border: none;
+  height: 700px; width: 440px;
+  padding-bottom: 31px;
+  zoom: 0.7;
+  -moz-transform: scale(0.7);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.7);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.7);
+  -webkit-transform-origin: 0 0;
+	margin-left: 132px;
 	margin-top: 0px;
-	font-size: 18px;
-	background-color: black;
-	color: white;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-#music h4{
-	color: white;
+    z-index: 999;
+    display: flex;
+    filter: grayscale(100%);
+ }
+#music h3{
 	position: absolute;
-	left: 7.5px;
-	top: -19px;
-	font-size: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 358px;
+  margin-top: 12.5px;
 }
+#home{
+  position: absolute;
+  left:  30px;
+  top: 30px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  z-index: 200;
+  width: 300px;
+  height: 215px;
+  min-height: 215px;
+  min-width: 300px;
+  max-height: 500px;
+  max-width: 500px;
+}
+#media{
+  display: none;
+  position: absolute;
+  left:  500px;
+  top: 200px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  z-index: 200;
+  width: 300px;
+  height: 215px;
+  min-height: 215px;
+  min-width: 300px;
+  max-height: 500px;
+  max-width: 500px;
+}
+#projects{
+  display: none;
+  position: absolute;
+  left:  300px;
+  top: 500px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  z-index: 200;
+  width: 300px;
+  height: 215px;
+  min-height: 215px;
+  min-width: 300px;
+  max-height: 500px;
+  max-width: 500px;
+}
+#planning{
+  display: none;
+  position: absolute;
+  left:  300px;
+  top: 150px;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  z-index: 200;
+  width: 300px;
+  height: 300px;
+  min-height: 300px;
+  min-width: 300px;
+  max-height: 500px;
+  max-width: 500px;
+}
+.select{
+	height: 40px;
+	padding-top: 5px;
+	width: 100%;
+	border-bottom: 2.5px solid black;
+}
+
 	</style>
 </head>
 <body>
 <div id="music" class="popup"> 
 	<h2 class="popup-header">Music 365</h2>
-	<h4>X</h4>
+	<h4 id="musicx">X</h4>
 	<h3>
 	<iframe id="tnt" src="https://apineapple.github.io/tnt/2023"></iframe>
 </h3>
 </div>
+
+<div id="home" class="popup">
+	<h2 class="popup-header">Home</h2>
+	<h4 id="homex">X</h4>
+	<div class="select" id="homemedia" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Media</h5></div>
+	<div class="select" id="homeprojects"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Projects</h5></div>
+	<div class="select" id="homeplanning"><i class="fa fa-folder"></i><h5 style="top: 105px;">Planning</h5></div>
+	<div class="select" id="hometheme"><i class="fa fa-adjust"></i><h5 style="top: 152.5px;">Themes</h5></div>
+</div>
+
+<div id="media" class="popup"> 
+	<h2 class="popup-header">Media</h2>
+	<h4 id="mediax">X</h4>
+	<div class="select" id="" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Music365.xml</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 57.5px;">Albums.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Films.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 152.5px;">Games.txt</h5></div>
+</div>
+
+<div id="projects" class="popup"> 
+	<h2 class="popup-header">Projects</h2>
+	<h4 id="projectsx">X</h4>
+	<div class="select" id="papers" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Papers</h5></div>
+	<div class="select" id="reference"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Reference</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Ideas.txt</h5></div>
+</div>
+
+<div id="planning" class="popup"> 
+	<h2 class="popup-header">Planning</h2>
+	<h4 id="planningx">X</h4>
+	<div class="select" id="" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Calendar.xml</h5></div>
+	<div class="select" id=""><i class="fa fa-window-maximize"></i><h5 style="top: 57.5px;">ReachOut.xml</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Daily.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 152.5px;">Goals.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 200px;">Birthday.txt</h5></div>
+</div>
+
+<script>
+	$("#musicx").click(function(){
+		$("#music").hide();
+	});
+	$("#mediax").click(function(){
+		$("#media").hide();
+	});
+	$("#projectsx").click(function(){
+		$("#projects").hide();
+	});
+	$("#planningx").click(function(){
+		$("#planning").hide();
+	});
+	$("#homex").click(function(){
+		$("#home").hide();
+	});
+
+$("#homemedia").click(function(){
+	$("#homemedia").css({"background-color":"black"});
+	$("#homemedia h5").css({"color":"white"});
+	$("#homemedia i").css({"color":"white"});
+
+	$("#homeprojects, #homeplanning, #hometheme").css({"background-color":"white"});
+	$("#homeprojects h5, #homeplanning h5, #hometheme h5").css({"color":"black"});
+	$("#homeprojects i, #homeplanning i, #hometheme i").css({"color":"black"});
+	});
+
+$("#homeprojects").click(function(){
+	$("#homeprojects").css({"background-color":"black"});
+	$("#homeprojects h5").css({"color":"white"});
+	$("#homeprojects i").css({"color":"white"});
+
+	$("#homemedia, #homeplanning, #hometheme").css({"background-color":"white"});
+	$("#homemedia h5, #homeplanning h5, #hometheme h5").css({"color":"black"});
+	$("#homemedia i, #homeplanning i, #hometheme i").css({"color":"black"});
+	});
+
+$("#homeplanning").click(function(){
+	$("#homeplanning").css({"background-color":"black"});
+	$("#homeplanning h5").css({"color":"white"});
+	$("#homeplanning i").css({"color":"white"});
+
+	$("#homemedia, #homeprojects, #hometheme").css({"background-color":"white"});
+	$("#homemedia h5, #homeprojects h5, #hometheme h5").css({"color":"black"});
+	$("#homemedia i, #homeprojects i, #hometheme i").css({"color":"black"});
+	});
+
+$("#hometheme").click(function(){
+	$("#hometheme").css({"background-color":"black"});
+	$("#hometheme h5").css({"color":"white"});
+	$("#hometheme i").css({"color":"white"});
+
+	$("#homemedia, #homeplanning, #homeprojects").css({"background-color":"white"});
+	$("#homemedia h5, #homeplanning h5, #homeprojects h5").css({"color":"black"});
+	$("#homemedia i, #homeplanning i, #homeprojects i").css({"color":"black"});
+	});
+
+$("#homemedia").dblclick(function(){
+	$("#media").show();
+});
+$("#homeprojects").dblclick(function(){
+	$("#projects").show();
+});
+$("#homeplanning").dblclick(function(){
+	$("#planning").show();
+});
+
+
+	$(document).mouseup(function(e) 
+{
+
+	var contarray = ["#music", "#home", "#media"];
+	var container;
+
+	for (let i = 0; i < (contarray.length); i++) {
+	container = $(contarray[i]);
+
+    if (!container.is(e.target) && container.has(e.target).length === 0){
+        $(contarray[i] + " h2").css({"background-color":"white", "color":"black", "border-bottom": "black 2.5px solid", "padding-bottom": "2.5px"});
+        $(contarray[i] + " h4").css({"color":"black"});
+        $(contarray[i]).css({"z-index": "1000"});
+    }
+    else{
+    	$(contarray[i] + " h2").css({"background-color":"black", "color":"white"});
+    	$(contarray[i] + " h4").css({"color":"white"});
+    	$(contarray[i]).css({"z-index": "5000"});
+    }
+}
+});
+</script>
 <script>
 	window.onload = function() {
   initDragElement();
