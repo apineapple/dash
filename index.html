@@ -388,7 +388,8 @@ $("#hometheme").dblclick(function(){
 	if (el.text() === "Theme: original") {
 	$("body").get(0).style.setProperty("--acolor", "red");
 	$("body").get(0).style.setProperty("--bcolor", "black");
-	$('iframe').contents().find('body').css('backgroundColor', 'red');
+	$('iframe').contents().find('.fa').css("color", "red");
+	$('iframe').contents().find('body').css('backgroundColor', 'black');
 	$("#hometheme h5").html("T: virtual boy");
 }
 	else if (el.text() === "T: virtual boy") {
