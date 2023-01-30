@@ -12,15 +12,19 @@
   font-family: windows;
   src: url(w95fa.woff);
 }
+html{
+	--acolor: #000000;
+	--bcolor: #ffffff;
+}
 	body{
 		font-family: windows;
-		background-color: white;
+		background-color: var(--bcolor);
 		overflow: hidden;
 		background-image:
-      linear-gradient(45deg, #000 25%, transparent 25%), 
-      linear-gradient(135deg, #000 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #000 75%),
-      linear-gradient(135deg, transparent 75%, #000 75%);
+      linear-gradient(45deg, var(--acolor) 25%, transparent 25%), 
+      linear-gradient(135deg, var(--acolor) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--acolor) 75%),
+      linear-gradient(135deg, transparent 75%, var(--acolor) 75%);
     background-size:5px 5px; /* Must be a square */
     background-position:0 0, 2.5px 0, 2.5px -2.5px, 0px 2.5px; 
 	}	
@@ -87,7 +91,7 @@
       width: 70px;
       height: 70px;
       text-decoration: none;
-      color: black;
+      color: var(--acolor);
       z-index: 999;
       left: 10px;
       position: absolute;
@@ -98,14 +102,14 @@ h2{
 	margin-left: 0px;
 	margin-top: 0px;
 	font-size: 18px;
-	background-color: white;
-	color: black;
+	background-color: var(--bcolor);
+	color: var(--acolor);
 	padding-top: 5px;
 	padding-bottom: 2.5px;
-	border-bottom: 2.5px solid black;
+	border-bottom: 2.5px solid var(--acolor);
 }
 h4{
-	color: black;
+	color: var(--acolor);
 	position: absolute;
 	left: 7.5px;
 	top: -19px;
@@ -113,7 +117,7 @@ h4{
 	cursor: pointer;
 }
 h5{
-	color: black;
+	color: var(--acolor);
 	position: absolute;
 	left: 80px;
 	top: 10px;
@@ -124,10 +128,10 @@ h5{
 	position: absolute;
 			left:  50%;
 			top: 10%;
-	background-color: white;
+	background-color: var(--bcolor);
 	text-align: center;
       /*border: 2.5px solid #c1c7c8;*/
-      border: 5px solid black;
+      border: 5px solid var(--acolor);
       /*#c1c7c8*/
       z-index: 200;
         height: 400px;
@@ -138,7 +142,7 @@ h5{
   max-width: 500px;
 }
 #music iframe{
-	background-color: white;
+	background-color: var(--bcolor);
   border: none;
   height: 700px; width: 440px;
   padding-bottom: 31px;
@@ -153,7 +157,7 @@ h5{
 	margin-top: 0px;
     z-index: 999;
     display: flex;
-    filter: grayscale(100%);
+   /* filter: grayscale(100%);*/
  }
 #music h3{
 	position: absolute;
@@ -167,9 +171,9 @@ h5{
   position: absolute;
   left:  30px;
   top: 30px;
-  background-color: white;
+  background-color: var(--bcolor);
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid var(--acolor);
   z-index: 200;
   width: 300px;
   height: 215px;
@@ -183,9 +187,9 @@ h5{
   position: absolute;
   left:  500px;
   top: 200px;
-  background-color: white;
+  background-color: var(--bcolor);
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid var(--acolor);
   z-index: 200;
   width: 300px;
   height: 215px;
@@ -199,9 +203,9 @@ h5{
   position: absolute;
   left:  300px;
   top: 500px;
-  background-color: white;
+  background-color: var(--bcolor);
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid var(--acolor);
   z-index: 200;
   width: 300px;
   height: 215px;
@@ -215,9 +219,9 @@ h5{
   position: absolute;
   left:  300px;
   top: 150px;
-  background-color: white;
+  background-color: var(--bcolor);
   text-align: center;
-  border: 5px solid black;
+  border: 5px solid var(--acolor);
   z-index: 200;
   width: 300px;
   height: 300px;
@@ -230,7 +234,7 @@ h5{
 	height: 40px;
 	padding-top: 5px;
 	width: 100%;
-	border-bottom: 2.5px solid black;
+	border-bottom: 2.5px solid var(--acolor);
 }
 
 	</style>
@@ -250,16 +254,16 @@ h5{
 	<div class="select" id="homemedia" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Media</h5></div>
 	<div class="select" id="homeprojects"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Projects</h5></div>
 	<div class="select" id="homeplanning"><i class="fa fa-folder"></i><h5 style="top: 105px;">Planning</h5></div>
-	<div class="select" id="hometheme"><i class="fa fa-adjust"></i><h5 style="top: 152.5px;">Themes</h5></div>
+	<div class="select" id="hometheme"><i class="fa fa-adjust"></i><h5 style="top: 152.5px;">Theme: original</h5></div>
 </div>
 
 <div id="media" class="popup"> 
 	<h2 class="popup-header">Media</h2>
 	<h4 id="mediax">X</h4>
-	<div class="select" id="" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Music365.xml</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 57.5px;">Albums.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Films.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 152.5px;">Games.txt</h5></div>
+	<div class="select" id="music365" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Music365.xml</h5></div>
+	<div class="select" id="albums"><i class="fa fa-file-o"></i><h5 style="top: 57.5px;">Albums.txt</h5></div>
+	<div class="select" id="films"><i class="fa fa-file-o"></i><h5 style="top: 105px;">Films.txt</h5></div>
+	<div class="select" id="games"><i class="fa fa-file-o"></i><h5 style="top: 152.5px;">Games.txt</h5></div>
 </div>
 
 <div id="projects" class="popup"> 
@@ -267,7 +271,7 @@ h5{
 	<h4 id="projectsx">X</h4>
 	<div class="select" id="papers" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Papers</h5></div>
 	<div class="select" id="reference"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Reference</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Ideas.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 105px;">Ideas.txt</h5></div>
 </div>
 
 <div id="planning" class="popup"> 
@@ -275,9 +279,9 @@ h5{
 	<h4 id="planningx">X</h4>
 	<div class="select" id="" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Calendar.xml</h5></div>
 	<div class="select" id=""><i class="fa fa-window-maximize"></i><h5 style="top: 57.5px;">ReachOut.xml</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 105px;">Daily.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 152.5px;">Goals.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-text-o"></i><h5 style="top: 200px;">Birthday.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 105px;">Daily.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 152.5px;">Goals.txt</h5></div>
+	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 200px;">Birthday.txt</h5></div>
 </div>
 
 <script>
@@ -297,44 +301,77 @@ h5{
 		$("#home").hide();
 	});
 
+
 $("#homemedia").click(function(){
-	$("#homemedia").css({"background-color":"black"});
-	$("#homemedia h5").css({"color":"white"});
-	$("#homemedia i").css({"color":"white"});
+	$("#homemedia").css({"background-color":"var(--acolor)"});
+	$("#homemedia h5").css({"color":"var(--bcolor)"});
+	$("#homemedia i").css({"color":"var(--bcolor)"});
 
-	$("#homeprojects, #homeplanning, #hometheme").css({"background-color":"white"});
-	$("#homeprojects h5, #homeplanning h5, #hometheme h5").css({"color":"black"});
-	$("#homeprojects i, #homeplanning i, #hometheme i").css({"color":"black"});
+	$("#homeprojects, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
+	$("#homeprojects h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
+	$("#homeprojects i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
 	});
-
 $("#homeprojects").click(function(){
-	$("#homeprojects").css({"background-color":"black"});
-	$("#homeprojects h5").css({"color":"white"});
-	$("#homeprojects i").css({"color":"white"});
+	$("#homeprojects").css({"background-color":"var(--acolor)"});
+	$("#homeprojects h5").css({"color":"var(--bcolor)"});
+	$("#homeprojects i").css({"color":"var(--bcolor)"});
 
-	$("#homemedia, #homeplanning, #hometheme").css({"background-color":"white"});
-	$("#homemedia h5, #homeplanning h5, #hometheme h5").css({"color":"black"});
-	$("#homemedia i, #homeplanning i, #hometheme i").css({"color":"black"});
+	$("#homemedia, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
+	$("#homemedia h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
+	$("#homemedia i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
 	});
-
 $("#homeplanning").click(function(){
-	$("#homeplanning").css({"background-color":"black"});
-	$("#homeplanning h5").css({"color":"white"});
-	$("#homeplanning i").css({"color":"white"});
-
-	$("#homemedia, #homeprojects, #hometheme").css({"background-color":"white"});
-	$("#homemedia h5, #homeprojects h5, #hometheme h5").css({"color":"black"});
-	$("#homemedia i, #homeprojects i, #hometheme i").css({"color":"black"});
+	$("#homeplanning").css({"background-color":"var(--acolor)"});
+	$("#homeplanning h5").css({"color":"var(--bcolor)"});
+	$("#homeplanning i").css({"color":"var(--bcolor)"});
+	$("#homemedia, #homeprojects, #hometheme").css({"background-color":"var(--bcolor)"});
+	$("#homemedia h5, #homeprojects h5, #hometheme h5").css({"color":"var(--acolor)"});
+	$("#homemedia i, #homeprojects i, #hometheme i").css({"color":"var(--acolor)"});
 	});
-
 $("#hometheme").click(function(){
-	$("#hometheme").css({"background-color":"black"});
-	$("#hometheme h5").css({"color":"white"});
-	$("#hometheme i").css({"color":"white"});
+	$("#hometheme").css({"background-color":"var(--acolor)"});
+	$("#hometheme h5").css({"color":"var(--bcolor)"});
+	$("#hometheme i").css({"color":"var(--bcolor)"});
 
-	$("#homemedia, #homeplanning, #homeprojects").css({"background-color":"white"});
-	$("#homemedia h5, #homeplanning h5, #homeprojects h5").css({"color":"black"});
-	$("#homemedia i, #homeplanning i, #homeprojects i").css({"color":"black"});
+	$("#homemedia, #homeplanning, #homeprojects").css({"background-color":"var(--bcolor)"});
+	$("#homemedia h5, #homeplanning h5, #homeprojects h5").css({"color":"var(--acolor)"});
+	$("#homemedia i, #homeplanning i, #homeprojects i").css({"color":"var(--acolor)"});
+	});
+$("#music365").click(function(){
+	$("#music365").css({"background-color":"var(--acolor)"});
+	$("#music365 h5").css({"color":"var(--bcolor)"});
+	$("#music365 i").css({"color":"var(--bcolor)"});
+
+	$("#albums, #films, #games").css({"background-color":"var(--bcolor)"});
+	$("#albums h5, #films h5, #games h5").css({"color":"var(--acolor)"});
+	$("#albums i, #films i, #games i").css({"color":"var(--acolor)"});
+	});
+$("#albums").click(function(){
+	$("#albums").css({"background-color":"var(--acolor)"});
+	$("#albums h5").css({"color":"var(--bcolor)"});
+	$("#albums i").css({"color":"var(--bcolor)"});
+
+	$("#music365, #films, #games").css({"background-color":"var(--bcolor)"});
+	$("#music365 h5, #films h5, #games h5").css({"color":"var(--acolor)"});
+	$("#music365 i, #films i, #games i").css({"color":"var(--acolor)"});
+	});
+$("#films").click(function(){
+	$("#films").css({"background-color":"var(--acolor)"});
+	$("#films h5").css({"color":"var(--bcolor)"});
+	$("#films i").css({"color":"var(--bcolor)"});
+
+	$("#albums, #music365, #games").css({"background-color":"var(--bcolor)"});
+	$("#albums h5, #music365 h5, #games h5").css({"color":"var(--acolor)"});
+	$("#albums i, #music365 i, #games i").css({"color":"var(--acolor)"});
+	});
+$("#games").click(function(){
+	$("#games").css({"background-color":"var(--acolor)"});
+	$("#games h5").css({"color":"var(--bcolor)"});
+	$("#games i").css({"color":"var(--bcolor)"});
+
+	$("#albums, #films, #music365").css({"background-color":"var(--bcolor)"});
+	$("#albums h5, #films h5, #music365 h5").css({"color":"var(--acolor)"});
+	$("#albums i, #films i, #music365 i").css({"color":"var(--acolor)"});
 	});
 
 $("#homemedia").dblclick(function(){
@@ -345,6 +382,25 @@ $("#homeprojects").dblclick(function(){
 });
 $("#homeplanning").dblclick(function(){
 	$("#planning").show();
+});
+$("#hometheme").dblclick(function(){
+	var el = $("#hometheme");
+	if (el.text() === "Theme: original") {
+	$("body").get(0).style.setProperty("--acolor", "red");
+	$("body").get(0).style.setProperty("--bcolor", "black");
+	$('iframe').contents().find('body').css('backgroundColor', '--acolor');
+	$('iframe').contents().find('body').css('color', '--bcolor');
+	$("#hometheme h5").html("T: virtual boy");
+}
+	else if (el.text() === "T: virtual boy") {
+	$("body").get(0).style.setProperty("--acolor", "royalblue");
+	$("body").get(0).style.setProperty("--bcolor", "#FFE5B4");
+	$("#hometheme h5").html("T: bubbly");
+}
+
+});
+$("#music365").dblclick(function(){
+	$("#music").show();
 });
 
 
@@ -358,13 +414,13 @@ $("#homeplanning").dblclick(function(){
 	container = $(contarray[i]);
 
     if (!container.is(e.target) && container.has(e.target).length === 0){
-        $(contarray[i] + " h2").css({"background-color":"white", "color":"black", "border-bottom": "black 2.5px solid", "padding-bottom": "2.5px"});
-        $(contarray[i] + " h4").css({"color":"black"});
+        $(contarray[i] + " h2").css({"background-color":"var(--bcolor)", "color":"var(--acolor)", "border-bottom": "var(--acolor) 2.5px solid", "padding-bottom": "2.5px"});
+        $(contarray[i] + " h4").css({"color":"var(--acolor)"});
         $(contarray[i]).css({"z-index": "1000"});
     }
     else{
-    	$(contarray[i] + " h2").css({"background-color":"black", "color":"white"});
-    	$(contarray[i] + " h4").css({"color":"white"});
+    	$(contarray[i] + " h2").css({"background-color":"var(--acolor)", "color":"var(--bcolor)"});
+    	$(contarray[i] + " h4").css({"color":"var(--bcolor)"});
     	$(contarray[i]).css({"z-index": "5000"});
     }
 }
