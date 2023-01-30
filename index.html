@@ -236,7 +236,32 @@ h5{
 	width: 100%;
 	border-bottom: 2.5px solid var(--acolor);
 }
-
+		input[type=color] {
+    display: none;
+}
+.circle{
+   border-radius: 50%;
+  width: 30px;
+  height: 30px; 
+  background-color: var(--acolor);
+  display:inline-block;
+}
+.semi{
+   border-radius: 12rem 0 0 12rem;
+  width: 10px;
+  height: 20px; 
+  background-color: var(--bcolor);
+  display:inline-block;
+  margin-left: -25px;
+  margin-bottom: 5px;
+  }
+  #colorpicker{
+  	display: inline-block;
+  	left: 28.25px;
+  	top: 177px;
+  	position: absolute;
+  	z-index: 10000;
+  }
 	</style>
 </head>
 <body>
@@ -254,8 +279,31 @@ h5{
 	<div class="select" id="homemedia" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Media</h5></div>
 	<div class="select" id="homeprojects"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Projects</h5></div>
 	<div class="select" id="homeplanning"><i class="fa fa-folder"></i><h5 style="top: 105px;">Planning</h5></div>
-	<div class="select" id="hometheme"><i class="fa fa-adjust"></i><h5 style="top: 152.5px;">Theme: original</h5></div>
+	<div class="select" id="hometheme"><div id="colorpicker">
+<span class="circle" id="txtcolor_front"></span>
+<input type='color' value='#ffffff' class='bar' id='txtcolor'>
+<span class="semi" id="bkgcolor_front"></span>
+<input type='color' value='#000000' style="z-index: 5000;" class='bar' id="bkgcolor">
+</div><h5 style="top: 152.5px;">Theme</h5></div>
 </div>
+
+<script type="text/javascript">
+	$("#txtcolor").change(function(event) {
+    console.log($(this).val());
+    $("#txtcolor_front").css('background-color',$(this).val());
+});
+$("#txtcolor_front").click(function(event) {
+    $("#txtcolor").click();
+});
+	$("#bkgcolor").change(function(event) {
+    console.log($(this).val());
+    $("#bkgcolor_front").css('background-color',$(this).val());
+});
+
+$("#bkgcolor_front").click(function(event) {
+    $("#bkgcolor").click();
+});
+</script>
 
 <div id="media" class="popup"> 
 	<h2 class="popup-header">Media</h2>
@@ -310,6 +358,8 @@ $("#homemedia").click(function(){
 	$("#homeprojects, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
 	$("#homeprojects h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
 	$("#homeprojects i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
+	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
+	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
 	});
 $("#homeprojects").click(function(){
 	$("#homeprojects").css({"background-color":"var(--acolor)"});
@@ -319,6 +369,8 @@ $("#homeprojects").click(function(){
 	$("#homemedia, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
 	$("#homemedia h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
 	$("#homemedia i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
+	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
+	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
 	});
 $("#homeplanning").click(function(){
 	$("#homeplanning").css({"background-color":"var(--acolor)"});
@@ -327,11 +379,14 @@ $("#homeplanning").click(function(){
 	$("#homemedia, #homeprojects, #hometheme").css({"background-color":"var(--bcolor)"});
 	$("#homemedia h5, #homeprojects h5, #hometheme h5").css({"color":"var(--acolor)"});
 	$("#homemedia i, #homeprojects i, #hometheme i").css({"color":"var(--acolor)"});
+	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
+	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
 	});
 $("#hometheme").click(function(){
 	$("#hometheme").css({"background-color":"var(--acolor)"});
 	$("#hometheme h5").css({"color":"var(--bcolor)"});
-	$("#hometheme i").css({"color":"var(--bcolor)"});
+	$("#bkgcolor_front").css({"background-color":"var(--acolor)"});
+	$("#txtcolor_front").css({"background-color":"var(--bcolor)"});
 
 	$("#homemedia, #homeplanning, #homeprojects").css({"background-color":"var(--bcolor)"});
 	$("#homemedia h5, #homeplanning h5, #homeprojects h5").css({"color":"var(--acolor)"});
@@ -383,21 +438,15 @@ $("#homeprojects").dblclick(function(){
 $("#homeplanning").dblclick(function(){
 	$("#planning").show();
 });
-$("#hometheme").dblclick(function(){
-	var el = $("#hometheme");
-	if (el.text() === "Theme: original") {
-	$("body").get(0).style.setProperty("--acolor", "red");
-	$("body").get(0).style.setProperty("--bcolor", "black");
-	$('iframe').contents().find('.fa').css("color", "red");
-	$('iframe').contents().find('body').css('backgroundColor', 'black');
-	$("#hometheme h5").html("T: virtual boy");
-}
-	else if (el.text() === "T: virtual boy") {
-	$("body").get(0).style.setProperty("--acolor", "royalblue");
-	$("body").get(0).style.setProperty("--bcolor", "#FFE5B4");
-	$("#hometheme h5").html("T: bubbly");
-}
-
+$("#bkgcolor").change(function(){
+ $("body").get(0).style.setProperty("--acolor", $(this).val());
+ $('iframe').contents().find('.fa').css("color", $(this).val());
+  //$("").css('background', $(this).val());
+});
+$("#txtcolor").change(function(){
+ $("body").get(0).style.setProperty("--bcolor", $(this).val());
+ $('iframe').contents().find('body').css('backgroundColor', $(this).val());
+  //$("").css('background', $(this).val());
 });
 $("#music365").dblclick(function(){
 	$("#music").show();
