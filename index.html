@@ -1,623 +1,930 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<base target="_parent" />
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-		   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title></title>
-	<style >
-				@font-face {
-  font-family: windows;
-  src: url(w95fa.woff);
-}
-html{
-	--acolor: #000000;
-	--bcolor: #ffffff;
-}
-	body{
-		font-family: windows;
-		background-color: var(--bcolor);
-		overflow: hidden;
-		background-image:
-      linear-gradient(45deg, var(--acolor) 25%, transparent 25%), 
-      linear-gradient(135deg, var(--acolor) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, var(--acolor) 75%),
-      linear-gradient(135deg, transparent 75%, var(--acolor) 75%);
-    background-size:5px 5px; /* Must be a square */
-    background-position:0 0, 2.5px 0, 2.5px -2.5px, 0px 2.5px; 
-	}	
-
-		.popup {
-  z-index: 9;
-}
-.popup {
-  position: absolute;
-  /*resize: both; !*enable this to css resize*! */
-  overflow: auto;
-}
-
-.popup-header {
-  cursor: move;
-  z-index: 10;
-}
-
-/*Resizeable*/
-
-.popup .resizer-right {
-  width: 5px;
-  height: 100%;
-  background: transparent;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  cursor: e-resize;
-}
-
-.popup .resizer-bottom {
-  width: 100%;
-  height: 5px;
-  background: transparent;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  cursor: n-resize;
-}
-
-.popup .resizer-both {
-  width: 5px;
-  height: 5px;
-  background: transparent;
-  z-index: 10;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  cursor: nw-resize;
-}
-
-/*NOSELECT*/
-
-.popup * {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently                         supported by Chrome and Opera */
-}
-.fa{
-      font-size: 35px;
-      width: 70px;
-      height: 70px;
-      text-decoration: none;
-      color: var(--acolor);
-      z-index: 999;
-      left: 10px;
-      position: absolute;
-      display: inline-block;
-}
-h2{
-	text-align: center;
-	margin-left: 0px;
-	margin-top: 0px;
-	font-size: 18px;
-	background-color: var(--bcolor);
-	color: var(--acolor);
-	padding-top: 5px;
-	padding-bottom: 2.5px;
-	border-bottom: 2.5px solid var(--acolor);
-}
-h4{
-	color: var(--acolor);
-	position: absolute;
-	left: 7.5px;
-	top: -19px;
-	font-size: 18px;
-	cursor: pointer;
-}
-h5{
-	color: var(--acolor);
-	position: absolute;
-	left: 80px;
-	top: 10px;
-	font-size: 18px;
-	display: inline-block;
-}
-#music{
-	display: none;
-	position: absolute;
-			left:  50%;
-			top: 10%;
-	background-color: var(--bcolor);
-	text-align: center;
-      /*border: 2.5px solid #c1c7c8;*/
-      border: 5px solid var(--acolor);
-      /*#c1c7c8*/
-      z-index: 200;
-        height: 400px;
-  width: 300px;
-        min-height: 400px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 500px;
-}
-#music iframe{
-	background-color: var(--bcolor);
-  border: none;
-  height: 700px; width: 440px;
-  padding-bottom: 31px;
-  zoom: 0.7;
-  -moz-transform: scale(0.7);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.7);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.7);
-  -webkit-transform-origin: 0 0;
-	margin-left: 132px;
-	margin-top: 0px;
-    z-index: 999;
-    display: flex;
-   /* filter: grayscale(100%);*/
- }
-#music h3{
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 358px;
-  margin-top: 12.5px;
-}
-#home{
-  position: absolute;
-  left:  30px;
-  top: 30px;
-  background-color: var(--bcolor);
-  text-align: center;
-  border: 5px solid var(--acolor);
-  z-index: 200;
-  width: 300px;
-  height: 215px;
-  min-height: 215px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 500px;
-}
-#media{
-  display: none;
-  position: absolute;
-  left:  500px;
-  top: 200px;
-  background-color: var(--bcolor);
-  text-align: center;
-  border: 5px solid var(--acolor);
-  z-index: 200;
-  width: 300px;
-  height: 215px;
-  min-height: 215px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 500px;
-}
-#projects{
-  display: none;
-  position: absolute;
-  left:  300px;
-  top: 500px;
-  background-color: var(--bcolor);
-  text-align: center;
-  border: 5px solid var(--acolor);
-  z-index: 200;
-  width: 300px;
-  height: 215px;
-  min-height: 215px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 500px;
-}
-#planning{
-  display: none;
-  position: absolute;
-  left:  300px;
-  top: 150px;
-  background-color: var(--bcolor);
-  text-align: center;
-  border: 5px solid var(--acolor);
-  z-index: 200;
-  width: 300px;
-  height: 300px;
-  min-height: 300px;
-  min-width: 300px;
-  max-height: 500px;
-  max-width: 500px;
-}
-.select{
-	height: 40px;
-	padding-top: 5px;
-	width: 100%;
-	border-bottom: 2.5px solid var(--acolor);
-}
-		input[type=color] {
-    display: none;
-}
-.circle{
-   border-radius: 50%;
-  width: 30px;
-  height: 30px; 
-  background-color: var(--acolor);
-  display:inline-block;
-}
-.semi{
-   border-radius: 12rem 0 0 12rem;
-  width: 10px;
-  height: 20px; 
-  background-color: var(--bcolor);
-  display:inline-block;
-  margin-left: -25px;
-  margin-bottom: 5px;
-  }
-  #colorpicker{
-  	display: inline-block;
-  	left: 28.25px;
-  	top: 177px;
-  	position: absolute;
-  	z-index: 10000;
-  }
-	</style>
-</head>
-<body>
-<div id="music" class="popup"> 
-	<h2 class="popup-header">Music 365</h2>
-	<h4 id="musicx">X</h4>
-	<h3>
-	<iframe id="tnt" src="https://apineapple.github.io/tnt/2023"></iframe>
-</h3>
-</div>
-
-<div id="home" class="popup">
-	<h2 class="popup-header">Home</h2>
-	<h4 id="homex">X</h4>
-	<div class="select" id="homemedia" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Media</h5></div>
-	<div class="select" id="homeprojects"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Projects</h5></div>
-	<div class="select" id="homeplanning"><i class="fa fa-folder"></i><h5 style="top: 105px;">Planning</h5></div>
-	<div class="select" id="hometheme"><div id="colorpicker">
-<span class="circle" id="txtcolor_front"></span>
-<input type='color' value='#ffffff' class='bar' id='txtcolor'>
-<span class="semi" id="bkgcolor_front"></span>
-<input type='color' value='#000000' style="z-index: 5000;" class='bar' id="bkgcolor">
-</div><h5 style="top: 152.5px;">Theme</h5></div>
-</div>
-
-<script type="text/javascript">
-	$("#txtcolor").change(function(event) {
-    console.log($(this).val());
-    $("#txtcolor_front").css('background-color',$(this).val());
-});
-$("#txtcolor_front").click(function(event) {
-    $("#txtcolor").click();
-});
-	$("#bkgcolor").change(function(event) {
-    console.log($(this).val());
-    $("#bkgcolor_front").css('background-color',$(this).val());
-});
-
-$("#bkgcolor_front").click(function(event) {
-    $("#bkgcolor").click();
-});
-</script>
-
-<div id="media" class="popup"> 
-	<h2 class="popup-header">Media</h2>
-	<h4 id="mediax">X</h4>
-	<div class="select" id="music365" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Music365.xml</h5></div>
-	<div class="select" id="albums"><i class="fa fa-file-o"></i><h5 style="top: 57.5px;">Albums.txt</h5></div>
-	<div class="select" id="films"><i class="fa fa-file-o"></i><h5 style="top: 105px;">Films.txt</h5></div>
-	<div class="select" id="games"><i class="fa fa-file-o"></i><h5 style="top: 152.5px;">Games.txt</h5></div>
-</div>
-
-<div id="projects" class="popup"> 
-	<h2 class="popup-header">Projects</h2>
-	<h4 id="projectsx">X</h4>
-	<div class="select" id="papers" style="margin-top: -15px;"><i class="fa fa-folder"></i><h5>Papers</h5></div>
-	<div class="select" id="reference"><i class="fa fa-folder"></i><h5 style="top: 57.5px;">Reference</h5></div>
-	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 105px;">Ideas.txt</h5></div>
-</div>
-
-<div id="planning" class="popup"> 
-	<h2 class="popup-header">Planning</h2>
-	<h4 id="planningx">X</h4>
-	<div class="select" id="" style="margin-top: -15px;"><i class="fa fa-window-maximize"></i><h5>Calendar.xml</h5></div>
-	<div class="select" id=""><i class="fa fa-window-maximize"></i><h5 style="top: 57.5px;">ReachOut.xml</h5></div>
-	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 105px;">Daily.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 152.5px;">Goals.txt</h5></div>
-	<div class="select" id=""><i class="fa fa-file-o"></i><h5 style="top: 200px;">Birthday.txt</h5></div>
-</div>
-
-<script>
-	$("#musicx").click(function(){
-		$("#music").hide();
-	});
-	$("#mediax").click(function(){
-		$("#media").hide();
-	});
-	$("#projectsx").click(function(){
-		$("#projects").hide();
-	});
-	$("#planningx").click(function(){
-		$("#planning").hide();
-	});
-	$("#homex").click(function(){
-		$("#home").hide();
-	});
-
-
-$("#homemedia").click(function(){
-	$("#homemedia").css({"background-color":"var(--acolor)"});
-	$("#homemedia h5").css({"color":"var(--bcolor)"});
-	$("#homemedia i").css({"color":"var(--bcolor)"});
-
-	$("#homeprojects, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
-	$("#homeprojects h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
-	$("#homeprojects i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
-	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
-	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
-	});
-$("#homeprojects").click(function(){
-	$("#homeprojects").css({"background-color":"var(--acolor)"});
-	$("#homeprojects h5").css({"color":"var(--bcolor)"});
-	$("#homeprojects i").css({"color":"var(--bcolor)"});
-
-	$("#homemedia, #homeplanning, #hometheme").css({"background-color":"var(--bcolor)"});
-	$("#homemedia h5, #homeplanning h5, #hometheme h5").css({"color":"var(--acolor)"});
-	$("#homemedia i, #homeplanning i, #hometheme i").css({"color":"var(--acolor)"});
-	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
-	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
-	});
-$("#homeplanning").click(function(){
-	$("#homeplanning").css({"background-color":"var(--acolor)"});
-	$("#homeplanning h5").css({"color":"var(--bcolor)"});
-	$("#homeplanning i").css({"color":"var(--bcolor)"});
-	$("#homemedia, #homeprojects, #hometheme").css({"background-color":"var(--bcolor)"});
-	$("#homemedia h5, #homeprojects h5, #hometheme h5").css({"color":"var(--acolor)"});
-	$("#homemedia i, #homeprojects i, #hometheme i").css({"color":"var(--acolor)"});
-	$("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
-	$("#txtcolor_front").css({"background-color":"var(--acolor)"});
-	});
-$("#hometheme").click(function(){
-	$("#hometheme").css({"background-color":"var(--acolor)"});
-	$("#hometheme h5").css({"color":"var(--bcolor)"});
-	$("#bkgcolor_front").css({"background-color":"var(--acolor)"});
-	$("#txtcolor_front").css({"background-color":"var(--bcolor)"});
-
-	$("#homemedia, #homeplanning, #homeprojects").css({"background-color":"var(--bcolor)"});
-	$("#homemedia h5, #homeplanning h5, #homeprojects h5").css({"color":"var(--acolor)"});
-	$("#homemedia i, #homeplanning i, #homeprojects i").css({"color":"var(--acolor)"});
-	});
-$("#music365").click(function(){
-	$("#music365").css({"background-color":"var(--acolor)"});
-	$("#music365 h5").css({"color":"var(--bcolor)"});
-	$("#music365 i").css({"color":"var(--bcolor)"});
-
-	$("#albums, #films, #games").css({"background-color":"var(--bcolor)"});
-	$("#albums h5, #films h5, #games h5").css({"color":"var(--acolor)"});
-	$("#albums i, #films i, #games i").css({"color":"var(--acolor)"});
-	});
-$("#albums").click(function(){
-	$("#albums").css({"background-color":"var(--acolor)"});
-	$("#albums h5").css({"color":"var(--bcolor)"});
-	$("#albums i").css({"color":"var(--bcolor)"});
-
-	$("#music365, #films, #games").css({"background-color":"var(--bcolor)"});
-	$("#music365 h5, #films h5, #games h5").css({"color":"var(--acolor)"});
-	$("#music365 i, #films i, #games i").css({"color":"var(--acolor)"});
-	});
-$("#films").click(function(){
-	$("#films").css({"background-color":"var(--acolor)"});
-	$("#films h5").css({"color":"var(--bcolor)"});
-	$("#films i").css({"color":"var(--bcolor)"});
-
-	$("#albums, #music365, #games").css({"background-color":"var(--bcolor)"});
-	$("#albums h5, #music365 h5, #games h5").css({"color":"var(--acolor)"});
-	$("#albums i, #music365 i, #games i").css({"color":"var(--acolor)"});
-	});
-$("#games").click(function(){
-	$("#games").css({"background-color":"var(--acolor)"});
-	$("#games h5").css({"color":"var(--bcolor)"});
-	$("#games i").css({"color":"var(--bcolor)"});
-
-	$("#albums, #films, #music365").css({"background-color":"var(--bcolor)"});
-	$("#albums h5, #films h5, #music365 h5").css({"color":"var(--acolor)"});
-	$("#albums i, #films i, #music365 i").css({"color":"var(--acolor)"});
-	});
-
-$("#homemedia").dblclick(function(){
-	$("#media").show();
-});
-$("#homeprojects").dblclick(function(){
-	$("#projects").show();
-});
-$("#homeplanning").dblclick(function(){
-	$("#planning").show();
-});
-$("#bkgcolor").change(function(){
- $("body").get(0).style.setProperty("--acolor", $(this).val());
- $('iframe').contents().find('.fa').css("color", $(this).val());
-  //$("").css('background', $(this).val());
-});
-$("#txtcolor").change(function(){
- $("body").get(0).style.setProperty("--bcolor", $(this).val());
- $('iframe').contents().find('body').css('backgroundColor', $(this).val());
-  //$("").css('background', $(this).val());
-});
-$("#music365").dblclick(function(){
-	$("#music").show();
-});
-
-
-	$(document).mouseup(function(e) 
-{
-
-	var contarray = ["#music", "#home", "#media"];
-	var container;
-
-	for (let i = 0; i < (contarray.length); i++) {
-	container = $(contarray[i]);
-
-    if (!container.is(e.target) && container.has(e.target).length === 0){
-        $(contarray[i] + " h2").css({"background-color":"var(--bcolor)", "color":"var(--acolor)", "border-bottom": "var(--acolor) 2.5px solid", "padding-bottom": "2.5px"});
-        $(contarray[i] + " h4").css({"color":"var(--acolor)"});
-        $(contarray[i]).css({"z-index": "1000"});
-    }
-    else{
-    	$(contarray[i] + " h2").css({"background-color":"var(--acolor)", "color":"var(--bcolor)"});
-    	$(contarray[i] + " h4").css({"color":"var(--bcolor)"});
-    	$(contarray[i]).css({"z-index": "5000"});
-    }
-}
-});
-</script>
-<script>
-	window.onload = function() {
-  initDragElement();
-  initResizeElement();
-};
-
-function initDragElement() {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  var popups = document.getElementsByClassName("popup");
-  var elmnt = null;
-  var currentZIndex = 100; //TODO reset z index when a threshold is passed
-
-  for (var i = 0; i < popups.length; i++) {
-    var popup = popups[i];
-    var header = getHeader(popup);
-
-    popup.onmousedown = function() {
-      this.style.zIndex = "" + ++currentZIndex;
-    };
-
-    if (header) {
-      header.parentPopup = popup;
-      header.onmousedown = dragMouseDown;
-    }
-  }
-
-  function dragMouseDown(e) {
-    elmnt = this.parentPopup;
-    elmnt.style.zIndex = "" + ++currentZIndex;
-
-    e = e || window.event;
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    if (!elmnt) {
-      return;
-    }
-
-    e = e || window.event;
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-  }
-
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-
-  function getHeader(element) {
-    var headerItems = element.getElementsByClassName("popup-header");
-
-    if (headerItems.length === 1) {
-      return headerItems[0];
-    }
-
-    return null;
-  }
-}
-
-function initResizeElement() {
-  var popups = document.getElementsByClassName("popup");
-  var element = null;
-  var startX, startY, startWidth, startHeight;
-
-  for (var i = 0; i < popups.length; i++) {
-    var p = popups[i];
-
-    var right = document.createElement("div");
-    right.className = "resizer-right";
-    p.appendChild(right);
-    right.addEventListener("mousedown", initDrag, false);
-    right.parentPopup = p;
-
-    var bottom = document.createElement("div");
-    bottom.className = "resizer-bottom";
-    p.appendChild(bottom);
-    bottom.addEventListener("mousedown", initDrag, false);
-    bottom.parentPopup = p;
-
-    var both = document.createElement("div");
-    both.className = "resizer-both";
-    p.appendChild(both);
-    both.addEventListener("mousedown", initDrag, false);
-    both.parentPopup = p;
-  }
-
-  function initDrag(e) {
-    element = this.parentPopup;
-
-    startX = e.clientX;
-    startY = e.clientY;
-    startWidth = parseInt(
-      document.defaultView.getComputedStyle(element).width,
-      10
-    );
-    startHeight = parseInt(
-      document.defaultView.getComputedStyle(element).height,
-      10
-    );
-    document.documentElement.addEventListener("mousemove", doDrag, false);
-    document.documentElement.addEventListener("mouseup", stopDrag, false);
-  }
-
-  function doDrag(e) {
-    element.style.width = startWidth + e.clientX - startX + "px";
-    element.style.height = startHeight + e.clientY - startY + "px";
-  }
-
-  function stopDrag() {
-    document.documentElement.removeEventListener("mousemove", doDrag, false);
-    document.documentElement.removeEventListener("mouseup", stopDrag, false);
-  }
-}
-</script>
-   <script>
-   window.addEventListener("keydown", checkKeyPressed, false);
-   function checkKeyPressed(evt) {
-      if(evt.keyCode == "13") {
-      	if ( $("#home").css('display') == 'none' || $("#home").css("visibility") == "hidden"){
-      		$("#home").show();
-      	}
-      	else{
-         window.location.reload();
-      	}
+  <head>
+    <base target="_parent" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title></title>
+    <style>
+      @font-face {
+        font-family: windows;
+        src: url(w95fa.woff);
       }
-   }
-   </script>
-</body>
+      html{
+      	--acolor: #000000;
+      	--bcolor: #ffffff;
+      }
+      body{
+       font-family: windows;
+       background-color: var(--bcolor);
+       overflow: hidden;
+       background-image:
+       linear-gradient(45deg, var(--acolor) 25%, transparent 25%),
+       linear-gradient(135deg, var(--acolor) 25%, transparent 25%),
+       linear-gradient(45deg, transparent 75%, var(--acolor) 75%),
+       linear-gradient(135deg, transparent 75%, var(--acolor) 75%);
+       background-size:5px 5px; /* Must be a square */
+      background-position:0 0, 2.5px 0, 2.5px -2.5px, 0px 2.5px;
+      	}
+      .popup {
+        	position: absolute;
+        	-ms-overflow-style: none;
+        	scrollbar-width: none;
+          background-color: var(--bcolor);
+          border: 2.5px solid var(--acolor);
+          text-align: center;
+          max-height: 500px;
+          max-width: 500px;
+          height: 215px;
+          width: 300px;
+      }
+      .popup::-webkit-scrollbar {
+          display: none;
+      }
+      .popup-header {
+        	cursor: move;
+        	position: fixed;
+        	width: inherit;
+        	max-width: inherit;
+        	min-width: inherit;
+          z-index: 2;
+      }
+      .popup .resizer-right {
+        width: 5px;
+        height: 100%;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: e-resize;
+      }
+
+      .popup .resizer-bottom {
+        width: 100%;
+        height: 5px;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: n-resize;
+      }
+
+      .popup .resizer-both {
+        width: 5px;
+        height: 5px;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: nw-resize;
+      }
+
+      .popup * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .fa{
+          font-size: 35px;
+          width: 70px;
+          height: 70px;
+          text-decoration: none;
+          color: var(--acolor);
+          left: 10px;
+          position: absolute;
+          display: inline-block;
+      }
+      h2{
+      	text-align: center;
+      	margin-left: 0px;
+      	margin-top: 0px;
+      	font-size: 18px;
+      	background-color: var(--bcolor);
+      	color: var(--acolor);
+      	padding-top: 5px;
+      	padding-bottom: 2.5px;
+      	border-bottom: 2.5px solid var(--acolor);
+      }
+      h4{
+      	color: var(--acolor);
+      	position: fixed;
+      	margin-top: 5px;
+      	margin-left: 7.5px;
+      	font-size: 18px;
+      	cursor: pointer;
+        z-index: 2;
+      }
+      h5{
+      	color: var(--acolor);
+      	margin-top: 10px;
+      	font-size: 18px;
+      	text-align: left;
+      	margin-left: 80px;
+      }
+      #music{
+      	display: none;
+      	left:  50%;
+      	top: 10%;
+      	text-align: center;
+        height: 400px;
+        width: 300px;
+        min-height: 400px;
+        min-width: 300px;
+      }
+      #music iframe{
+      	background-color: var(--bcolor);
+        border: none;
+        height: 700px; width: 440px;
+        padding-bottom: 31px;
+        zoom: 0.7;
+        -moz-transform: scale(0.7);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.7);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.7);
+        -webkit-transform-origin: 0 0;
+      	margin-left: 132px;
+      	margin-top: 0px;
+          display: flex;
+       }
+      #music h3{
+      	position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 358px;
+        margin-top: 12.5px;
+      }
+      #home{
+        left:  30px;
+        top: 30px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+      }
+      #media{
+        display: none;
+        left:  500px;
+        top: 200px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+      }
+      #projects{
+        display: none;
+        left:  300px;
+        top: 500px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+      }
+      #planning{
+        display: none;
+        left:  300px;
+        top: 150px;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+      }
+      #paperlist{
+        /*display: none;*/
+        left:  300px;
+        top: 500px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+      #daily{
+        display: none;
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+
+      #albumlist{
+        display: none;
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+      #albumlist ul {
+        display : flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        outline: none;
+      }
+      #albumlist li {
+        list-style: none;
+        padding: 0px 10px;
+        color: var(--acolor);
+      }
+
+      #albumlist li:hover{
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      #albumlist img{
+        display: none;
+        height: 100px;
+        width: 100px;
+        border: 2.5px solid black;
+      }
+
+      #filmlist{
+        display: none;
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+      #filmlist ul {
+        display : flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        outline: none;
+      }
+      #filmlist li {
+        list-style: none;
+        padding: 0px 10px;
+        color: var(--acolor);
+      }
+
+      #filmlist li:hover{
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      #filmlist img{
+        display: none;
+        height: auto;
+        width: 100px;
+        border: 2.5px solid black;
+      }
+
+      #gamelist{
+        display: none;
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+      #gamelist ul {
+        display : flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        outline: none;
+      }
+      #gamelist li {
+        list-style: none;
+        padding: 0px 10px;
+        color: var(--acolor);
+      }
+
+      #gamelist li:hover{
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      #gamelist img{
+        display: none;
+        height: auto;
+        width: 100px;
+        border: 2.5px solid black;
+      }
+
+      .select{
+      	height: 40px;
+      	padding-top: 5px;
+      	width: 100%;
+      	border-bottom: 2.5px solid var(--acolor);
+      }
+      		input[type=color] {
+          display: none;
+      }
+      .circle{
+         border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: var(--acolor);
+        display:inline-block;
+      }
+      .semi{
+         border-radius: 12rem 0 0 12rem;
+        width: 10px;
+        height: 20px;
+        background-color: var(--bcolor);
+        display:inline-block;
+        margin-left: -25px;
+        margin-bottom: 5px;
+        }
+        #colorpicker{
+        	display: inline-block;
+        	left: 28.25px;
+        	top: 177px;
+        	position: absolute;
+        	z-index: 10000;
+        }
+        *:focus {
+          outline: none;
+      }
+      .selected{}
+      #todo {
+        display : flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        outline: none;
+      }
+      #todo li {
+        list-style: none;
+        padding: 4px 10px;
+        color: var(--acolor);
+      }
+      #todo li{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #todo li:before {
+        content: "a";
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        width: 9px;
+        height: 9px;
+        margin: 6px 15px 0 0;
+        padding: 0 0px;
+        background: var(--bcolor);
+        color: var(--bcolor);
+        font-weight: normal;
+        font-size: .1em;
+        border-radius: 0;
+        border: 1px var(--acolor) solid;
+      }
+      #todo li.mini {
+        order: 2;
+      }
+      #todo li.mini:before {
+        content: "a";
+        background: var(--acolor);
+        color: var(--acolor);
+      }
+
+      #todo li.mini {
+        color: var(--acolor);
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="music" class="popup">
+      <h2 class="popup-header">Music365.xml</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <h3>
+        <iframe id="tnt" src="https://apineapple.github.io/tnt/2023"></iframe>
+      </h3>
+    </div>
+
+    <div id="home" class="popup">
+      <h2 class="popup-header">Home</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="homemedia">
+        <i class="fa fa-folder"></i>
+        <h5>Media</h5>
+      </div>
+      <div class="select" id="homeprojects">
+        <i class="fa fa-folder"></i>
+        <h5>Projects</h5>
+      </div>
+      <div class="select" id="homeplanning">
+        <i class="fa fa-folder"></i>
+        <h5>Planning</h5>
+      </div>
+      <div class="select" id="hometheme">
+        <div id="colorpicker">
+          <span class="circle" id="txtcolor_front"></span>
+          <input type="color" value="#ffffff" class="bar" id="txtcolor" />
+          <span class="semi" id="bkgcolor_front"></span>
+          <input type="color" value="#000000" class="bar" id="bkgcolor" />
+        </div>
+        <h5>Theme</h5>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      	$("#txtcolor").change(function(event) {
+          console.log($(this).val());
+          $("#txtcolor_front").css('background-color',$(this).val());
+      });
+      $("#txtcolor_front").click(function(event) {
+          $("#txtcolor").click();
+      });
+      	$("#bkgcolor").change(function(event) {
+          console.log($(this).val());
+          $("#bkgcolor_front").css('background-color',$(this).val());
+      });
+
+      $("#bkgcolor_front").click(function(event) {
+          $("#bkgcolor").click();
+      });
+    </script>
+
+    <div id="media" class="popup">
+      <h2 class="popup-header">Media</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="music365">
+        <i class="fa fa-window-maximize"></i>
+        <h5>Music365.xml</h5>
+      </div>
+      <div class="select" id="albums">
+        <i class="fa fa-file-o"></i>
+        <h5>Albums.txt</h5>
+      </div>
+      <div class="select" id="films">
+        <i class="fa fa-file-o"></i>
+        <h5>Films.txt</h5>
+      </div>
+      <div class="select" id="games">
+        <i class="fa fa-file-o"></i>
+        <h5>Games.txt</h5>
+      </div>
+    </div>
+
+    <div id="projects" class="popup">
+      <h2 class="popup-header">Projects</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="papers">
+        <i class="fa fa-folder"></i>
+        <h5>Papers</h5>
+      </div>
+      <div class="select" id="reference">
+        <i class="fa fa-folder"></i>
+        <h5>Reference</h5>
+      </div>
+      <div class="select" id="ideas">
+        <i class="fa fa-file-o"></i>
+        <h5>Ideas.txt</h5>
+      </div>
+    </div>
+    <div id="paperlist" class="popup">
+      <h2 class="popup-header">Papers</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+        <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Media</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Projects</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Planning</h5>
+      </div>
+       <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Media</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Projects</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-folder"></i>
+        <h5>Planning</h5>
+      </div>
+    </div>
+
+
+    <div id="planning" class="popup">
+      <h2 class="popup-header">Planning</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="">
+        <i class="fa fa-window-maximize"></i>
+        <h5>Calendar.xml</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-window-maximize"></i>
+        <h5>ReachOut.xml</h5>
+      </div>
+      <div class="select" id="clkdaily">
+        <i class="fa fa-file-o"></i>
+        <h5>Todo.txt</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-file-o"></i>
+        <h5>Goals.txt</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-file-o"></i>
+        <h5>Birthday.txt</h5>
+      </div>
+    </div>
+
+    <div id="daily" class="popup">
+      <h2 class="popup-header">Todo.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="todo" contenteditable="true"></ul>
+    </div>
+
+    <div id="albumlist" class="popup">
+      <h2 class="popup-header">Albums.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="daalbumlist">
+      </ul>
+    </div>
+
+    <div id="filmlist" class="popup">
+      <h2 class="popup-header">Films.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="dafilmlist">
+      </ul>
+    </div>
+
+    <div id="gamelist" class="popup">
+      <h2 class="popup-header">Games.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="dagamelist">
+      </ul>
+    </div>
+
+    <script>
+      albumlist = [
+["100 Gecs", "1000 Gecs", "https://images.genius.com/c0fe72170114956569e80c2a70718560.1000x1000x1.png"],
+["Ariana Grande", "thank u, next", "https://images.genius.com/893eb6735abcf6a464cc034a5912d44b.300x300x1.jpg"],
+["Aries", "Welcome Home", "https://images.genius.com/7a9c0318205b62b69560a04bd6f78414.1000x1000x1.png"],
+["Billy Woods", "Hiding Places", "https://images.genius.com/4ff33b9d9b6789dba6fb0532b56bf126.900x900x1.jpg"],
+["Body Meat", "Truck Music", "https://images.genius.com/4834e7e0c90fe489faccd0d97abede3a.700x700x1.jpg"],
+["Brockhampton", "Saturation III", "https://images.genius.com/9956aa4c4965212522d2a54f2fd694e2.1000x1000x1.png"],
+["Charli XCX", "Charli", "https://images.genius.com/5fe34705c7af82886d5c883070b051bd.1000x1000x1.jpg"],
+["Charli XCX", "How I'm Feeling Now", "https://images.genius.com/e982a3c576e88fd122b3eb604adcae2c.1000x1000x1.png"],
+["Clairo", "Sling", "https://images.genius.com/8b7cb60ab9cccbf83a1a8f3cd08c862f.999x999x1.png"],
+["Clairo", "Immunity", "https://images.genius.com/08dcb11c5d99d150b17b92a5e0f1f8b4.1000x1000x1.png"],
+["Clark Aboud", "Kind Words", "https://t2.genius.com/unsafe/996x0/https%3A%2F%2Fimages.genius.com%2F3c44c77515ac3396abe50e701304b0e7.700x700x1.jpg"],
+["Death Grips", "The Money Store", "https://images.genius.com/51cc469b2e1654a371dddb48c54c8a5b.1000x1000x1.jpg"],
+["Denzel Curry", "Ta13oo", "https://images.genius.com/2214e8ee6558f96bb990c5ae320a5816.1000x1000x1.png"],
+["Dorian Electra", "Flamboyant", "https://images.genius.com/4e5e6d5cd23279daf38b9c282cf8e076.1000x1000x1.jpg"],
+["Earl Sweatshirt", "Some Rap Songs", "https://images.genius.com/af5a80cb485050a3ef6e70b12703a0b2.1000x1000x1.jpg"],
+["Freddie Gibbs", "Alfredo", "https://images.genius.com/652071def0c03b27e0618a16025d87f1.869x869x1.jpg"],
+["George Clanton", "Slide", "https://images.genius.com/acdd449df7ac83536b1314bc54c6fc6f.1000x1000x1.jpg"],
+["Injury Reserve", "By the Time I Get to Pheonix", "https://images.genius.com/b2887ac97f5c34615686947ce620bd7a.1000x1000x1.png"],
+["J Dilla", "Donuts", "https://images.genius.com/c109b06257048b1cfdd0edf4fa9913d2.900x900x1.jpg"],
+["John Glacier", "SHILOH: Lost For Words", "https://images.genius.com/2eccbb3e065495704f4069ab2c83b923.1000x1000x1.jpg"],
+["Jpegmafia", "EP2!", "https://images.genius.com/0443d260d20dbea3a40f9532c20b2db9.1000x1000x1.jpg"],
+["Kanye West", "Yeezus", "https://images.genius.com/f4daff29a000bf818c5e53355c12d672.1000x1000x1.png"],
+["Kanye West", "Graduation", "https://images.genius.com/b9d6cf24ceb76fa5d8ebf02569e16e2f.1000x1000x1.png"],
+["Kaytranada", "BUBBA", "https://images.genius.com/f3e71777a16fec42d5b32796d4375ea2.1000x1000x1.jpg"],
+["Louke Mann", "Sd-1", "https://t2.genius.com/unsafe/1554x0/https%3A%2F%2Fimages.genius.com%2Fe655c85de9329da5a3943a274eaef33c.700x700x1.jpg"],
+["Mac Miller", "Circles", "https://images.genius.com/f5528ff2f79b8c9aaf79f41beaea2379.1000x1000x1.jpg"],
+["Mac Miller", "Swimming", "https://images.genius.com/3a5a5525277ce891f722c3221ade68d2.1000x1000x1.jpg"],
+["Margo Guryan", "Take a Picture", "https://images.genius.com/e6b37555c9abd8d9a3e3d95852313dd5.600x600x1.jpg"],
+["Mid-Air Thief", "Crumbling", "https://e.snmc.io/i/600/s/9089902c86b01d3520907ba62cda3c1f/7573998/%EA%B3%B5%EC%A4%91%EB%8F%84%EB%91%91-mid-air-thief-%EB%AC%B4%EB%84%88%EC%A7%80%EA%B8%B0-crumbling-Cover-Art.jpg"],
+["Nana Yamato", "Before Sunrise", "https://images.genius.com/c972d2693d116321a4a1b9b261fab6c8.1000x1000x1.jpg"],
+["Pheobe Bridgers", "Punisher", "https://images.genius.com/7d0d55bc0879faa98cdadbef8a19d211.1000x1000x1.png"],
+["Pink Floyd", "Dark Side of The Moon", "https://images.genius.com/d3ecd57d490f664e08aba94019796f1a.1000x1000x1.png"],
+["Postal Service", "Give Up", "https://images.genius.com/f7b41ece312ce47103b6962420c20b76.1000x1000x1.jpg"],
+["Pusha T", "Daytona", "https://images.genius.com/99199dd6e0f60ef05789ba2cbe2a5d9b.1080x1080x1.jpg"],
+["Radio", "In Rainbows", "https://images.genius.com/38989efe696e4e1d63bea40c361e6c80.1000x1000x1.png"],
+["Run the Jewels", "RTJ 3", "http://images.genius.com/8153716c802c4bcf1cd9378b33b12a6f.1000x1000x1.jpg"],
+["Saba", "CARE FOR ME", "https://images.genius.com/6b73a9e78b5a37af4e52f4ffb960690a.761x761x1.png"],
+["Travis Scott", "Rodeo", "https://images.genius.com/c4bb8ce84ca234c188ef096bda62ca4b.1000x1000x1.jpg"],
+["Tyler, the Creator", "IGOR", "https://images.genius.com/60712a7b6cbcc792502d877fb9a170c5.1000x1000x1.jpg"],
+["Tyler, the Creator", "Flower Boy", "https://images.genius.com/657250fbf21b4b4814e4bbab1b2000b5.1000x1000x1.jpg"],
+["Weyes Blood", "Titanic Rising", "https://images.genius.com/f14e7ee30ee6ed83dce41a1924ffb5b3.1000x1000x1.jpg"],
+["Yung Lean", "Stranger", "https://images.genius.com/8de0d3d9d8265302ad988a86774d50dc.1000x1000x1.png"],
+      ];
+      albumlistContent = "";
+      for (let i = 0; i < albumlist.length; i++) {
+        albumlistContent = albumlistContent + "<style>#albumlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+albumlist[i][0]+", <i>"+albumlist[i][1]+"</i></li><img src='"+albumlist[i][2]+"'>"
+      }
+      albumlistContent = albumlistContent + "<li style='height: 100px;''></li>"
+      document.getElementById("daalbumlist").innerHTML = albumlistContent;
+
+      
+      filmlist = [
+["C'mon C'mon", "https://m.media-amazon.com/images/M/MV5BMzkwZWJhOTUtZTJkMC00OWQ5LTljZDctYzgxNWFiYjEyZjZiXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_FMjpg_UX1000_.jpg"],
+["The Shining", "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-shining-yellow-poster-kultur-arts-studios.jpg"],
+["Pearl", "https://i.ebayimg.com/images/g/WG8AAOSwsohjMGrd/s-l1600.jpg"],
+      ];
+      filmlistContent = "";
+      for (let i = 0; i < filmlist.length; i++) {
+        filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+filmlist[i][0]+"</li><img src='"+filmlist[i][1]+"'>"
+      }
+    document.getElementById("dafilmlist").innerHTML = filmlistContent;
+      
+      gamelist = [
+["Hollow Knight", "https://static.wikia.nocookie.net/hollowknight/images/a/a1/HK_first_cover_art.png/revision/latest?cb=20201215163524"],
+["The Messenger", "https://cdn.mobygames.com/covers/9034706-the-messenger-front-cover.jpg"],
+["A Hat in Time", "https://static.wikia.nocookie.net/a-hat-in-time/images/5/57/Cover_Art.png/revision/latest?cb=20171111042922"],
+      ];
+      gamelistContent = "";
+      for (let i = 0; i < gamelist.length; i++) {
+        gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+gamelist[i][0]+"</li><img src='"+gamelist[i][1]+"'>"
+      }
+      gamelistContent = gamelistContent + "<li style='height: 100px;''></li>"
+      document.getElementById("dagamelist").innerHTML = gamelistContent;
+
+      jQuery(function($){
+        // Store content
+        $("#todo").blur(function() {
+          $("#todo").trigger("update");
+          localStorage.setItem('todoData', $(this).html());
+        });
+        // restore content when page loads
+        if(localStorage.getItem('todoData')!==null) {
+          $("#todo").html(localStorage.getItem('todoData'));
+        }
+        // add maxi and mini classes upon content (optional)
+        $("#todo").on("update", function() {
+          var that = $(this);
+          $("li:contains('!')",that).addClass('mini');
+          $("li:not(:contains('!'))",that).removeClass('mini');
+        });
+        $("#todo").trigger("update");
+
+        // Réinitialisation
+        $('#reset').click(function(){
+          localStorage.clear();
+          $("#todo").html("<li>...</li>");
+        });
+      });
+
+      	$("span").dblclick(function(){
+      		$("#home").toggle();
+      	});
+
+        $('.x').on("click", function () {
+        $(this).parents('div').hide();
+        });
+
+
+        $('.popup div').on("click", function () {
+        $(this).css({"background-color":"var(--acolor)", "color":"var(--bcolor)"});
+        $(this).find("h5").css({"color":"var(--bcolor)"});
+        $(this).find('i').css({"color":"var(--bcolor)"});
+
+        $(".select").not(this).css({"background-color":"var(--bcolor)"});
+        $(".select").not(this).find("h5").css({"color":"var(--acolor)"});
+        $(".select").not(this).find("i").css({"color":"var(--acolor)"});
+        $("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
+        $("#txtcolor_front").css({"background-color":"var(--acolor)"});
+        });
+
+      $("#homemedia").dblclick(function(){
+      	$("#media").show();
+      });
+      $("#music365").dblclick(function(){
+      	$("#music").show();
+      });
+      $("#homeprojects").dblclick(function(){
+      	$("#projects").show();
+      });
+      $("#homeplanning").dblclick(function(){
+      	$("#planning").show();
+      });
+      $("#clkdaily").dblclick(function(){
+      	$("#daily").show();
+      });
+      $("#albums").dblclick(function(){
+        $("#albumlist").show();
+      });
+      $("#films").dblclick(function(){
+        $("#filmlist").show();
+      });
+      $("#games").dblclick(function(){
+        $("#gamelist").show();
+      });
+      $("#bkgcolor").change(function(){
+       $("body").get(0).style.setProperty("--acolor", $(this).val());
+       $('iframe').contents().find('.fa').css("color", $(this).val());
+      });
+      $("#txtcolor").change(function(){
+       $("body").get(0).style.setProperty("--bcolor", $(this).val());
+       $('iframe').contents().find('body').css('backgroundColor', $(this).val());
+      });
+
+      	$(document).mouseup(function(e)
+      {
+
+      	var contarray = ["#music", "#home", "#media", "#daily", "#albumlist", "#filmlist", "#gamelist"];
+      	var container;
+
+      	for (let i = 0; i < (contarray.length); i++) {
+      	container = $(contarray[i]);
+
+          if (!container.is(e.target) && container.has(e.target).length === 0){
+              $(contarray[i] + " h2").css({"background-color":"var(--bcolor)", "color":"var(--acolor)", "border-bottom": "var(--acolor) 2.5px solid", "padding-bottom": "2.5px"});
+              $(contarray[i] + " h4").css({"color":"var(--acolor)"});
+              $(contarray[i]).removeClass("selected");
+          }
+          else{
+          	$(contarray[i] + " h2").css({"background-color":"var(--acolor)", "color":"var(--bcolor)"});
+          	$(contarray[i] + " h4").css({"color":"var(--bcolor)"});
+          	$(contarray[i]).addClass("selected");
+          }
+      }
+      });
+      	$('.popup-header').mouseenter(function () {
+             $(this).css({"background-color": "var(--acolor)", "color": "var(--bcolor)"});
+             $(this).next().css({"color": "var(--bcolor)"});
+           });
+
+       $('.popup-header').mouseleave(function () {
+       	if($(this.parentElement).hasClass("selected")){/*console.log("yayyyy!")*/}
+       	else{
+       		$(this).css({"background-color": "var(--bcolor)", "color": "var(--acolor)"});
+       		$(this).next().css({"color": "var(--acolor)"});
+       	}
+           }
+       ).mouseleave();
+    </script>
+    <script>
+      	window.onload = function() {
+        initDragElement();
+        initResizeElement();
+      };
+
+      function initDragElement() {
+        var pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+        var popups = document.getElementsByClassName("popup");
+        var elmnt = null;
+        var currentZIndex = 100;
+
+        for (var i = 0; i < popups.length; i++) {
+          var popup = popups[i];
+          var header = getHeader(popup);
+
+          popup.onmousedown = function() {
+            this.style.zIndex = "" + ++currentZIndex;
+          };
+
+          if (header) {
+            header.parentPopup = popup;
+            header.onmousedown = dragMouseDown;
+          }
+        }
+
+        function dragMouseDown(e) {
+          elmnt = this.parentPopup;
+          elmnt.style.zIndex = "" + ++currentZIndex;
+
+          e = e || window.event;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+          if (!elmnt) {
+            return;
+          }
+
+          e = e || window.event;
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+          elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+
+        function getHeader(element) {
+          var headerItems = element.getElementsByClassName("popup-header");
+
+          if (headerItems.length === 1) {
+            return headerItems[0];
+          }
+          return null;
+        }
+      }
+
+      function initResizeElement() {
+        var popups = document.getElementsByClassName("popup");
+        var element = null;
+        var startX, startY, startWidth, startHeight;
+
+        for (var i = 0; i < popups.length; i++) {
+          var p = popups[i];
+
+          var right = document.createElement("div");
+          right.className = "resizer-right";
+          p.appendChild(right);
+          right.addEventListener("mousedown", initDrag, false);
+          right.parentPopup = p;
+
+          var bottom = document.createElement("div");
+          bottom.className = "resizer-bottom";
+          p.appendChild(bottom);
+          bottom.addEventListener("mousedown", initDrag, false);
+          bottom.parentPopup = p;
+
+          var both = document.createElement("div");
+          both.className = "resizer-both";
+          p.appendChild(both);
+          both.addEventListener("mousedown", initDrag, false);
+          both.parentPopup = p;
+        }
+
+        function initDrag(e) {
+          element = this.parentPopup;
+
+          startX = e.clientX;
+          startY = e.clientY;
+          startWidth = parseInt(
+            document.defaultView.getComputedStyle(element).width,
+            10
+          );
+          startHeight = parseInt(
+            document.defaultView.getComputedStyle(element).height,
+            10
+          );
+          document.documentElement.addEventListener("mousemove", doDrag, false);
+          document.documentElement.addEventListener("mouseup", stopDrag, false);
+        }
+
+        function doDrag(e) {
+          element.style.width = startWidth + e.clientX - startX + "px";
+          element.style.height = startHeight + e.clientY - startY + "px";
+        }
+
+        function stopDrag() {
+          document.documentElement.removeEventListener("mousemove", doDrag, false);
+          document.documentElement.removeEventListener("mouseup", stopDrag, false);
+        }
+      }
+    </script>
+    <script>
+      window.addEventListener("keydown", checkKeyPressed, false);
+       function checkKeyPressed(evt) {
+          if(evt.keyCode == "13") {
+          	if ( $("#home").css('display') == 'none' || $("#home").css("visibility") == "hidden"){
+          		$("#home").show();
+          	}
+          	else if ($("#daily").hasClass("selected")) {}
+          	else{
+             window.location.reload();
+          	}
+          }
+       }
+    </script>
+  </body>
 </html>
