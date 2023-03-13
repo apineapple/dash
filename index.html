@@ -155,6 +155,9 @@
       	margin-top: 0px;
           display: flex;
        }
+       #music iframe img{
+        border-radius: 0%;
+       }
       #music h3{
       	position: absolute;
         top: 50%;
@@ -194,9 +197,10 @@
         left:  300px;
         top: 150px;
         width: 300px;
-        height: 300px;
-        min-height: 300px;
+        height: 215px;
+        min-height: 215px;
         min-width: 300px;
+        overflow-y: scroll;
       }
       #paperlist{
         /*display: none;*/
@@ -220,7 +224,7 @@
         overflow-y: scroll;
       }
 
-      #albumlist{
+      .baselist{
         display: none;
         left:  600px;
         top: 150px;
@@ -231,7 +235,7 @@
         min-width: 300px;
         overflow-y: scroll;
       }
-      #albumlist ul {
+      .baselist ul {
         display : flex;
         flex-direction: column;
         margin: 0;
@@ -239,95 +243,22 @@
         line-height: 1.4;
         outline: none;
       }
-      #albumlist li {
+      .baselist li {
         list-style: none;
         padding: 0px 10px;
         color: var(--acolor);
       }
 
-      #albumlist li:hover{
+      .baselist li:hover{
         text-decoration: underline;
         font-weight: bold;
       }
-      #albumlist img{
-        display: none;
-        height: 100px;
-        width: 100px;
-        border: 2.5px solid black;
-      }
-
-      #filmlist{
-        display: none;
-        left:  600px;
-        top: 150px;
-        text-align: left;
-        width: 300px;
-        height: 300px;
-        min-height: 300px;
-        min-width: 300px;
-        overflow-y: scroll;
-      }
-      #filmlist ul {
-        display : flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 10px;
-        line-height: 1.4;
-        outline: none;
-      }
-      #filmlist li {
-        list-style: none;
-        padding: 0px 10px;
-        color: var(--acolor);
-      }
-
-      #filmlist li:hover{
-        text-decoration: underline;
-        font-weight: bold;
-      }
-      #filmlist img{
+      .baselist img{
         display: none;
         height: auto;
         width: 100px;
         border: 2.5px solid black;
       }
-
-      #gamelist{
-        display: none;
-        left:  600px;
-        top: 150px;
-        text-align: left;
-        width: 300px;
-        height: 300px;
-        min-height: 300px;
-        min-width: 300px;
-        overflow-y: scroll;
-      }
-      #gamelist ul {
-        display : flex;
-        flex-direction: column;
-        margin: 0;
-        padding: 10px;
-        line-height: 1.4;
-        outline: none;
-      }
-      #gamelist li {
-        list-style: none;
-        padding: 0px 10px;
-        color: var(--acolor);
-      }
-
-      #gamelist li:hover{
-        text-decoration: underline;
-        font-weight: bold;
-      }
-      #gamelist img{
-        display: none;
-        height: auto;
-        width: 100px;
-        border: 2.5px solid black;
-      }
-
       .select{
       	height: 40px;
       	padding-top: 5px;
@@ -392,14 +323,14 @@
         text-align: center;
         width: 9px;
         height: 9px;
-        margin: 6px 15px 0 0;
+        margin: 4px 15px 0 0;
         padding: 0 0px;
         background: var(--bcolor);
         color: var(--bcolor);
         font-weight: normal;
         font-size: .1em;
         border-radius: 0;
-        border: 1px var(--acolor) solid;
+        border: 2.5px var(--acolor) solid;
       }
       #todo li.mini {
         order: 2;
@@ -414,6 +345,24 @@
         color: var(--acolor);
         text-decoration: line-through;
       }
+      .listheader{
+        text-align: center;
+        white-space:pre;
+      }
+      .listheader:hover{
+        text-decoration: none !important;
+        font-weight: normal !important;
+      }
+      .fa-sticky-note-o{
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        left: 25px;
+        width: 35px;
+        height: 35px;
+      }
+
     </style>
   </head>
   <body>
@@ -480,15 +429,15 @@
         <h5>Music365.xml</h5>
       </div>
       <div class="select" id="albums">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Albums.txt</h5>
       </div>
       <div class="select" id="films">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Films.txt</h5>
       </div>
       <div class="select" id="games">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Games.txt</h5>
       </div>
     </div>
@@ -506,38 +455,11 @@
         <h5>Reference</h5>
       </div>
       <div class="select" id="ideas">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Ideas.txt</h5>
       </div>
     </div>
     <div id="paperlist" class="popup">
-      <h2 class="popup-header">Papers</h2>
-      <h4 class="x">X</h4>
-      <div style="margin-top: 27px;"></div>
-        <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Media</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Projects</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Planning</h5>
-      </div>
-       <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Media</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Projects</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-folder"></i>
-        <h5>Planning</h5>
-      </div>
     </div>
 
 
@@ -554,15 +476,15 @@
         <h5>ReachOut.xml</h5>
       </div>
       <div class="select" id="clkdaily">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Todo.txt</h5>
       </div>
       <div class="select" id="">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Goals.txt</h5>
       </div>
       <div class="select" id="">
-        <i class="fa fa-file-o"></i>
+        <i class="fa fa-sticky-note-o"></i>
         <h5>Birthday.txt</h5>
       </div>
     </div>
@@ -574,7 +496,7 @@
       <ul id="todo" contenteditable="true"></ul>
     </div>
 
-    <div id="albumlist" class="popup">
+    <div id="albumlist" class="popup baselist">
       <h2 class="popup-header">Albums.txt</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
@@ -582,7 +504,7 @@
       </ul>
     </div>
 
-    <div id="filmlist" class="popup">
+    <div id="filmlist" class="popup baselist">
       <h2 class="popup-header">Films.txt</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
@@ -590,7 +512,7 @@
       </ul>
     </div>
 
-    <div id="gamelist" class="popup">
+    <div id="gamelist" class="popup baselist">
       <h2 class="popup-header">Games.txt</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
@@ -600,13 +522,13 @@
 
     <script>
       albumlist = [
-["100 Gecs", "1000 Gecs", "https://images.genius.com/c0fe72170114956569e80c2a70718560.1000x1000x1.png"],
+["100 Gecs", "1000 Gecs", "https://images.genius.com/1f76dfd639861c8035ecb09e29aaddf4.636x636x1.jpg"],
 ["Ariana Grande", "thank u, next", "https://images.genius.com/893eb6735abcf6a464cc034a5912d44b.300x300x1.jpg"],
 ["Aries", "Welcome Home", "https://images.genius.com/7a9c0318205b62b69560a04bd6f78414.1000x1000x1.png"],
-["Billy Woods", "Hiding Places", "https://images.genius.com/4ff33b9d9b6789dba6fb0532b56bf126.900x900x1.jpg"],
+["Billy Woods", "Hiding Places", "https://t2.genius.com/unsafe/1554x0/https%3A%2F%2Fimages.genius.com%2Fdbfd91cf969672f841bf0f910778285d.900x900x1.jpg"],
 ["Body Meat", "Truck Music", "https://images.genius.com/4834e7e0c90fe489faccd0d97abede3a.700x700x1.jpg"],
 ["Brockhampton", "Saturation III", "https://images.genius.com/9956aa4c4965212522d2a54f2fd694e2.1000x1000x1.png"],
-["Charli XCX", "Charli", "https://images.genius.com/5fe34705c7af82886d5c883070b051bd.1000x1000x1.jpg"],
+["Charli XCX", "Charli", "https://images.genius.com/9d339d0ac2207ed44dc115359358925c.750x750x1.jpg"],
 ["Charli XCX", "How I'm Feeling Now", "https://images.genius.com/e982a3c576e88fd122b3eb604adcae2c.1000x1000x1.png"],
 ["Clairo", "Sling", "https://images.genius.com/8b7cb60ab9cccbf83a1a8f3cd08c862f.999x999x1.png"],
 ["Clairo", "Immunity", "https://images.genius.com/08dcb11c5d99d150b17b92a5e0f1f8b4.1000x1000x1.png"],
@@ -651,28 +573,63 @@
       document.getElementById("daalbumlist").innerHTML = albumlistContent;
 
       
-      filmlist = [
+      wishfilmlist = [
+
+      ];
+      watchfilmlist = [
 ["C'mon C'mon", "https://m.media-amazon.com/images/M/MV5BMzkwZWJhOTUtZTJkMC00OWQ5LTljZDctYzgxNWFiYjEyZjZiXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_FMjpg_UX1000_.jpg"],
 ["The Shining", "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-shining-yellow-poster-kultur-arts-studios.jpg"],
 ["Pearl", "https://i.ebayimg.com/images/g/WG8AAOSwsohjMGrd/s-l1600.jpg"],
       ];
-      filmlistContent = "";
-      for (let i = 0; i < filmlist.length; i++) {
-        filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+filmlist[i][0]+"</li><img src='"+filmlist[i][1]+"'>"
+      filmlistContent = "<li class='listheader'>--  Wishlist  --</li>";;
+      for (let i = 0; i < wishfilmlist.length; i++) {
+        filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+wishfilmlist[i][0]+"</li><img src='"+wishfilmlist[i][1]+"'>"
+      }
+      filmlistContent = filmlistContent + 
+      "<li class='listheader'>--  Watched  --</li>";;
+      for (let i = 0; i < watchfilmlist.length; i++) {
+        filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+watchfilmlist[i][0]+"</li><img src='"+watchfilmlist[i][1]+"'>"
       }
     document.getElementById("dafilmlist").innerHTML = filmlistContent;
       
-      gamelist = [
-["Hollow Knight", "https://static.wikia.nocookie.net/hollowknight/images/a/a1/HK_first_cover_art.png/revision/latest?cb=20201215163524"],
-["The Messenger", "https://cdn.mobygames.com/covers/9034706-the-messenger-front-cover.jpg"],
-["A Hat in Time", "https://static.wikia.nocookie.net/a-hat-in-time/images/5/57/Cover_Art.png/revision/latest?cb=20171111042922"],
+wishgamelist = [
+
       ];
-      gamelistContent = "";
-      for (let i = 0; i < gamelist.length; i++) {
-        gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+gamelist[i][0]+"</li><img src='"+gamelist[i][1]+"'>"
+      playedgamelist = [
+["C'mon C'mon", "https://m.media-amazon.com/images/M/MV5BMzkwZWJhOTUtZTJkMC00OWQ5LTljZDctYzgxNWFiYjEyZjZiXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_FMjpg_UX1000_.jpg"],
+["The Shining", "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-shining-yellow-poster-kultur-arts-studios.jpg"],
+["Pearl", "https://i.ebayimg.com/images/g/WG8AAOSwsohjMGrd/s-l1600.jpg"],
+      ];
+      gamelistContent = "<li class='listheader'>--  Wishlist  --</li>";;
+      for (let i = 0; i < wishgamelist.length; i++) {
+        gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+wishgamelist[i][0]+"</li><img src='"+wishgamelist[i][1]+"'>"
       }
-      gamelistContent = gamelistContent + "<li style='height: 100px;''></li>"
-      document.getElementById("dagamelist").innerHTML = gamelistContent;
+      gamelistContent = gamelistContent + 
+      "<li class='listheader'>--  Played  --</li>";;
+      for (let i = 0; i < playedgamelist.length; i++) {
+        gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+playedgamelist[i][0]+"</li><img src='"+playedgamelist[i][1]+"'>"
+      }
+    document.getElementById("dagamelist").innerHTML = gamelistContent;
+
+      paperslist = [
+["papera"],
+["paperb"],
+["paperc"],
+["papera"],
+["paperb"],
+["paperc"],
+["papera"],
+["paperb"],
+["paperc"],
+      ];
+      paperslistContent = '<h2 class="popup-header">Papers</h2> <h4 class="x">X</h4><div style="margin-top: 27px;"></div>';
+
+      for (let i = 0; i < paperslist.length; i++) {
+        paperslistContent = paperslistContent + "<div class='select' id='clkpaperlist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+paperslist[i][0]+"</h5></div>"
+      }
+      paperslistContent = paperslistContent
+      document.getElementById("paperlist").innerHTML = paperslistContent;
+
 
       jQuery(function($){
         // Store content
@@ -685,7 +642,7 @@
           $("#todo").html(localStorage.getItem('todoData'));
         }
         // add maxi and mini classes upon content (optional)
-        $("#todo").on("update", function() {
+         $("#todo").on("update", function() {
           var that = $(this);
           $("li:contains('!')",that).addClass('mini');
           $("li:not(:contains('!'))",that).removeClass('mini');
@@ -723,27 +680,34 @@
       $("#homemedia").dblclick(function(){
       	$("#media").show();
       });
-      $("#music365").dblclick(function(){
-      	$("#music").show();
-      });
+          $("#music365").dblclick(function(){
+          	$("#music").show();
+          });
+          $("#albums").dblclick(function(){
+            $("#albumlist").show();
+          });
+          $("#films").dblclick(function(){
+            $("#filmlist").show();
+          });
+          $("#games").dblclick(function(){
+            $("#gamelist").show();
+          });
+
       $("#homeprojects").dblclick(function(){
       	$("#projects").show();
       });
+           $("#papers").dblclick(function(){
+            $("#paperlist").show();
+          });
+
+
       $("#homeplanning").dblclick(function(){
       	$("#planning").show();
       });
-      $("#clkdaily").dblclick(function(){
-      	$("#daily").show();
-      });
-      $("#albums").dblclick(function(){
-        $("#albumlist").show();
-      });
-      $("#films").dblclick(function(){
-        $("#filmlist").show();
-      });
-      $("#games").dblclick(function(){
-        $("#gamelist").show();
-      });
+          $("#clkdaily").dblclick(function(){
+          	$("#daily").show();
+          });
+
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
        $('iframe').contents().find('.fa').css("color", $(this).val());
@@ -756,7 +720,14 @@
       	$(document).mouseup(function(e)
       {
 
-      	var contarray = ["#music", "#home", "#media", "#daily", "#albumlist", "#filmlist", "#gamelist"];
+      	var contarray = $('.popup').map(function(i) {
+        return this.id;
+        });
+        
+        for(var i=0;i<contarray.length;i++){
+         contarray[i]="#"+contarray[i];
+        }
+
       	var container;
 
       	for (let i = 0; i < (contarray.length); i++) {
@@ -774,13 +745,14 @@
           }
       }
       });
+      
       	$('.popup-header').mouseenter(function () {
              $(this).css({"background-color": "var(--acolor)", "color": "var(--bcolor)"});
              $(this).next().css({"color": "var(--bcolor)"});
            });
 
        $('.popup-header').mouseleave(function () {
-       	if($(this.parentElement).hasClass("selected")){/*console.log("yayyyy!")*/}
+       	if($(this.parentElement).hasClass("selected")){}
        	else{
        		$(this).css({"background-color": "var(--bcolor)", "color": "var(--acolor)"});
        		$(this).next().css({"color": "var(--acolor)"});
