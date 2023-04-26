@@ -155,9 +155,6 @@
       	margin-top: 0px;
           display: flex;
        }
-       #music iframe img{
-        border-radius: 0%;
-       }
       #music h3{
       	position: absolute;
         top: 50%;
@@ -203,7 +200,17 @@
         overflow-y: scroll;
       }
       #paperlist{
-        /*display: none;*/
+        display: none;
+        left:  300px;
+        top: 500px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+      #referencelist{
+        display: none;
         left:  300px;
         top: 500px;
         width: 300px;
@@ -220,6 +227,18 @@
         width: 300px;
         height: 300px;
         min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+
+      #theme{ 
+        display: none;
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 350px;
+        min-height: 350px;
         min-width: 300px;
         overflow-y: scroll;
       }
@@ -358,74 +377,87 @@
         transform: scaleX(-1);
         -webkit-transform: scaleY(-1);
         transform: scaleY(-1);
-        left: 25px;
+        left: 27.5px;
         width: 35px;
         height: 35px;
       }
-
+      #marker{
+        font-size: 22px;
+        position: absolute;
+        display: none;
+        text-align: center;
+      }
+      #omarker{
+        font-size: 22px;
+        position: absolute;
+        display: none;
+        text-align: center;
+      }
+      #thingytongler{
+        text-align: center!important;
+        font-size: 16px;
+        color: var(--bcolor);
+        background-color: var(--acolor);
+        border: 2.5px solid var(--acolor);
+        width: 90px;
+        padding: 5px;
+        margin: 15px auto;
+      }
+      #othingytongler{
+        text-align: center!important;
+        font-size: 16px;
+        color: var(--acolor);
+        border: 2.5px solid var(--acolor);
+        width: 90px;
+        padding: 5px;
+        margin: 15px auto;
+      }
+      #thingyslider{
+        font-size: 24px;
+        position: absolute;
+        color: white;
+        top: 110px;
+        left: 199px;
+      }
+      #othingyslider{
+        font-size: 24px;
+        position: absolute;
+        color: white;
+        top: 110px;
+        left: 199px;
+      }
     </style>
   </head>
   <body>
-    <div id="music" class="popup">
-      <h2 class="popup-header">Music365.xml</h2>
-      <h4 class="x">X</h4>
-      <div style="margin-top: 27px;"></div>
-      <h3>
-        <iframe id="tnt" src="https://apineapple.github.io/tnt/2023"></iframe>
-      </h3>
-    </div>
-
     <div id="home" class="popup">
       <h2 class="popup-header">Home</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
       <div class="select" id="homemedia">
-        <i class="fa fa-folder"></i>
+        <i class="fa fa-folder-o"></i>
         <h5>Media</h5>
       </div>
       <div class="select" id="homeprojects">
-        <i class="fa fa-folder"></i>
+        <i class="fa fa-folder-o"></i>
         <h5>Projects</h5>
       </div>
       <div class="select" id="homeplanning">
-        <i class="fa fa-folder"></i>
+        <i class="fa fa-folder-o"></i>
         <h5>Planning</h5>
       </div>
       <div class="select" id="hometheme">
-        <div id="colorpicker">
-          <span class="circle" id="txtcolor_front"></span>
-          <input type="color" value="#ffffff" class="bar" id="txtcolor" />
-          <span class="semi" id="bkgcolor_front"></span>
-          <input type="color" value="#000000" class="bar" id="bkgcolor" />
-        </div>
+        <i class="fa fa-sliders"></i>
         <h5>Theme</h5>
       </div>
     </div>
 
-    <script type="text/javascript">
-      	$("#txtcolor").change(function(event) {
-          console.log($(this).val());
-          $("#txtcolor_front").css('background-color',$(this).val());
-      });
-      $("#txtcolor_front").click(function(event) {
-          $("#txtcolor").click();
-      });
-      	$("#bkgcolor").change(function(event) {
-          console.log($(this).val());
-          $("#bkgcolor_front").css('background-color',$(this).val());
-      });
-
-      $("#bkgcolor_front").click(function(event) {
-          $("#bkgcolor").click();
-      });
-    </script>
 
     <div id="media" class="popup">
       <h2 class="popup-header">Media</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
       <div class="select" id="music365">
-        <i class="fa fa-window-maximize"></i>
+        <i class="fa fa-floppy-o"></i>
         <h5>Music365.xml</h5>
       </div>
       <div class="select" id="albums">
@@ -442,58 +474,13 @@
       </div>
     </div>
 
-    <div id="projects" class="popup">
-      <h2 class="popup-header">Projects</h2>
+    <div id="music" class="popup">
+      <h2 class="popup-header">Music365.xml</h2>
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
-      <div class="select" id="papers">
-        <i class="fa fa-folder"></i>
-        <h5>Papers</h5>
-      </div>
-      <div class="select" id="reference">
-        <i class="fa fa-folder"></i>
-        <h5>Reference</h5>
-      </div>
-      <div class="select" id="ideas">
-        <i class="fa fa-sticky-note-o"></i>
-        <h5>Ideas.txt</h5>
-      </div>
-    </div>
-    <div id="paperlist" class="popup">
-    </div>
-
-
-    <div id="planning" class="popup">
-      <h2 class="popup-header">Planning</h2>
-      <h4 class="x">X</h4>
-      <div style="margin-top: 27px;"></div>
-      <div class="select" id="">
-        <i class="fa fa-window-maximize"></i>
-        <h5>Calendar.xml</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-window-maximize"></i>
-        <h5>ReachOut.xml</h5>
-      </div>
-      <div class="select" id="clkdaily">
-        <i class="fa fa-sticky-note-o"></i>
-        <h5>Todo.txt</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-sticky-note-o"></i>
-        <h5>Goals.txt</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-sticky-note-o"></i>
-        <h5>Birthday.txt</h5>
-      </div>
-    </div>
-
-    <div id="daily" class="popup">
-      <h2 class="popup-header">Todo.txt</h2>
-      <h4 class="x">X</h4>
-      <div style="margin-top: 27px;"></div>
-      <ul id="todo" contenteditable="true"></ul>
+      <h3>
+        <iframe id="tnt" src="https://apineapple.github.io/tnt/2023"></iframe>
+      </h3>
     </div>
 
     <div id="albumlist" class="popup baselist">
@@ -520,7 +507,262 @@
       </ul>
     </div>
 
+    <div id="projects" class="popup">
+      <h2 class="popup-header">Projects</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="papers">
+        <i class="fa fa-folder-o"></i>
+        <h5>My Papers</h5>
+      </div>
+      <div class="select" id="reference">
+        <i class="fa fa-folder-o"></i>
+        <h5>Reference Papers</h5>
+      </div>
+      <div class="select" id="ideas">
+        <i class="fa fa-sticky-note-o"></i>
+        <h5>Ideas.txt</h5>
+      </div>
+    </div>
+
+      <div id="paperlist" class="popup"></div>
+      <div id="referencelist" class="popup"></div>
+
+
+    <div id="planning" class="popup">
+      <h2 class="popup-header">Planning</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <div class="select" id="">
+        <i class="fa fa-floppy-o"></i>
+        <h5>Calendar.xml</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-floppy-o"></i>
+        <h5>ReachOut.xml</h5>
+      </div>
+      <div class="select" id="clkdaily">
+        <i class="fa fa-sticky-note-o"></i>
+        <h5>Todo.txt</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-sticky-note-o"></i>
+        <h5>Goals.txt</h5>
+      </div>
+      <div class="select" id="">
+        <i class="fa fa-sticky-note-o"></i>
+        <h5>Birthday.txt</h5>
+      </div>
+    </div>
+
+    <div id="daily" class="popup">
+      <h2 class="popup-header">Todo.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="todo" contenteditable="true"></ul>
+    </div>
+
+    <div id="theme" class="popup">
+      <h2 class="popup-header">Theme</h2>
+      <h4 class="x">X</h4>
+            <span style="position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); display: none;" id="bkgcanvas">
+        <div style="margin-top: 40px;"></div>
+        <canvas width="210px" height="210px" id="color_canvas"></canvas>
+            <h6 id="marker">+</h6>
+      <h6 id="thingyslider">-</h6>
+      <h6 id="othingytongler">Text</h6>
+    </span>
+      <span style="position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);" id="txtcanvas">
+        <div style="margin-top: 40px;"></div>
+        <canvas width="210px" height="210px" id="ocolor_canvas"></canvas>
+            <h6 id="omarker">+</h6>
+      <h6 id="othingyslider">-</h6>
+      <h6 id="thingytongler">Background</h6>
+    </span>
+    </div>
+
+
     <script>
+
+    /*rt = [];
+    rb = [];
+    for (let i = 0; i < 3; i++) {
+      rt.push(Math.floor(Math.random() * 256));
+      rb.push(Math.floor(Math.random() * 256));
+    }
+    rtxt = `rgb(${rt[0]},${rt[1]},${rt[2]})`
+    rbkg = `rgb(${rb[0]},${rb[1]},${rb[2]})`
+    $("body").get(0).style.setProperty("--acolor", rtxt);
+    $('iframe').contents().find('.fa').css("color", rtxt);
+      $("body").get(0).style.setProperty("--bcolor", rbkg);
+    $('iframe').contents().find('.fa').css("background-color", rbkg);*/
+
+
+
+$('#othingytongler').on("click", function () {
+  $("#bkgcanvas").hide();
+  $("#txtcanvas").show();
+});
+$('#thingytongler').on("click", function () {
+  $("#txtcanvas").hide();
+  $("#bkgcanvas").show();
+});
+
+var colorCanvas = document.getElementById('color_canvas');
+var ColorCtx = colorCanvas .getContext('2d');  // This create a 2D context for the canvas
+
+var color = 'blue';
+let gradientH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width-15, 0);
+gradientH.addColorStop(0, '#fff');
+gradientH.addColorStop(1, color);
+ColorCtx .fillStyle = gradientH;
+ColorCtx .fillRect(0, 0, ColorCtx .canvas.width-15, ColorCtx .canvas.height);
+
+// Create a Vertical Gradient(white to black)
+ let gradientV = ColorCtx .createLinearGradient(0, 0, 0, ColorCtx .canvas.height);
+ gradientV.addColorStop(0, 'rgba(0,0,0,0)');
+ gradientV.addColorStop(1, '#000');
+ ColorCtx .fillStyle = gradientV;
+ ColorCtx .fillRect(0, 0, ColorCtx .canvas.width-15, 
+ ColorCtx .canvas.height); 
+
+
+let gradientS = ColorCtx .createLinearGradient(ColorCtx .canvas.width-10, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
+gradientS.addColorStop(0, 'red');
+gradientS.addColorStop(1/6, 'orange');
+gradientS.addColorStop(2/6, 'yellow');
+gradientS.addColorStop(3/6, 'green');
+gradientS.addColorStop(4/6, 'blue');
+gradientS.addColorStop(5/6, 'indigo');
+gradientS.addColorStop(1, 'violet');
+ColorCtx .fillStyle = gradientS;
+ColorCtx .fillRect(ColorCtx .canvas.width-10, 0, ColorCtx .canvas.width, ColorCtx .canvas.height);
+
+ colorCanvas.addEventListener('click',function(e){
+    rect = colorCanvas.getBoundingClientRect(),
+   x = event.clientX-rect.left;  // Get X coordinate
+    y = event.clientY-rect.top;  // Get Y coordinate*/
+    pixel = ColorCtx.getImageData(x, y, 1, 1).data;    // Read pixel Color
+    rgb = `rgb(${pixel[0]},${pixel[1]},${pixel[2]})`;
+    
+  if (x <= 195){
+    
+    if ((pixel[0]*0.299 + pixel[1]*0.587 + pixel[3]*0.114) > 186){
+      $("#marker").css("color", "black");
+    }
+    else{
+      $("#marker").css("color", "white");
+    }
+    $("#marker").css({"left":x-5.5, "top":y-25});
+    $("#marker").show();
+
+    $("body").get(0).style.setProperty("--acolor", rgb);
+    $('iframe').contents().find('.fa').css("color", rgb);
+
+  }
+  else if(x >= 200){
+$("#marker").hide();
+
+    $("#thingyslider").css({"top":y-30});
+    $("#thingyslider").show();
+
+
+
+let gradientSH = ColorCtx .createLinearGradient(0, 0, ColorCtx .canvas.width-15, 0);
+gradientSH.addColorStop(0, '#fff');
+    gradientSH.addColorStop(1, rgb);
+ColorCtx .fillStyle = gradientSH;
+ColorCtx .fillRect(0, 0, ColorCtx .canvas.width-15, ColorCtx .canvas.height);
+
+ let gradientV = ColorCtx .createLinearGradient(0, 0, 0, ColorCtx .canvas.height);
+ gradientV.addColorStop(0, 'rgba(0,0,0,0)');
+ gradientV.addColorStop(1, '#000');
+ ColorCtx .fillStyle = gradientV;
+ ColorCtx .fillRect(0, 0, ColorCtx .canvas.width-15, ColorCtx .canvas.height); 
+}
+ });
+
+
+var ocolorCanvas = document.getElementById('ocolor_canvas');
+var oColorCtx = ocolorCanvas .getContext('2d');  // This create a 2D context for the canvas
+
+var ocolor = 'red';
+let ogradientH = oColorCtx .createLinearGradient(0, 0, oColorCtx .canvas.width-15, 0);
+ogradientH.addColorStop(0, '#fff');
+ogradientH.addColorStop(1, ocolor);
+oColorCtx .fillStyle = ogradientH;
+oColorCtx .fillRect(0, 0, oColorCtx .canvas.width-15, oColorCtx .canvas.height);
+
+// Create a Vertical Gradient(white to black)
+ let ogradientV = oColorCtx .createLinearGradient(0, 0, 0, oColorCtx .canvas.height);
+ ogradientV.addColorStop(0, 'rgba(0,0,0,0)');
+ ogradientV.addColorStop(1, '#000');
+ oColorCtx .fillStyle = ogradientV;
+ oColorCtx .fillRect(0, 0, oColorCtx .canvas.width-15, 
+ oColorCtx .canvas.height); 
+
+
+let ogradientS = oColorCtx .createLinearGradient(oColorCtx .canvas.width-10, 0, oColorCtx .canvas.width, oColorCtx .canvas.height);
+ogradientS.addColorStop(0, 'red');
+ogradientS.addColorStop(1/6, 'orange');
+ogradientS.addColorStop(2/6, 'yellow');
+ogradientS.addColorStop(3/6, 'green');
+ogradientS.addColorStop(4/6, 'blue');
+ogradientS.addColorStop(5/6, 'indigo');
+ogradientS.addColorStop(1, 'violet');
+oColorCtx .fillStyle = ogradientS;
+oColorCtx .fillRect(oColorCtx .canvas.width-10, 0, oColorCtx .canvas.width, oColorCtx .canvas.height);
+
+ ocolorCanvas.addEventListener('click',function(e){
+    orect = ocolorCanvas.getBoundingClientRect(),
+   ox = event.clientX-orect.left;  // Get X coordinate
+    oy = event.clientY-orect.top;  // Get Y coordinate*/
+    opixel = oColorCtx.getImageData(ox, oy, 1, 1).data;    // Read pixel Color
+    orgb = `rgb(${opixel[0]},${opixel[1]},${opixel[2]})`;
+    
+  if (ox <= 195){
+    
+    if ((opixel[0]*0.299 + opixel[1]*0.587 + opixel[3]*0.114) > 186){
+      $("#omarker").css("color", "black");
+    }
+    else{
+      $("#omarker").css("color", "white");
+    }
+    $("#omarker").css({"left":ox-5.5, "top":oy-25});
+    $("#omarker").show();
+
+    $("body").get(0).style.setProperty("--bcolor", orgb);
+    $('iframe').contents().find('.fa').css("background-color", orgb);
+
+  }
+  else if(ox >= 200){
+$("#omarker").hide();
+
+    $("#othingyslider").css({"top":oy-30});
+    $("#othingyslider").show();
+
+
+
+let ogradientSH = oColorCtx .createLinearGradient(0, 0, oColorCtx .canvas.width-15, 0);
+ogradientSH.addColorStop(0, '#fff');
+    ogradientSH.addColorStop(1, orgb);
+oColorCtx .fillStyle = ogradientSH;
+oColorCtx .fillRect(0, 0, oColorCtx .canvas.width-15, oColorCtx .canvas.height);
+
+ let ogradientV = oColorCtx .createLinearGradient(0, 0, 0, oColorCtx .canvas.height);
+ ogradientV.addColorStop(0, 'rgba(0,0,0,0)');
+ ogradientV.addColorStop(1, '#000');
+ oColorCtx .fillStyle = ogradientV;
+ oColorCtx .fillRect(0, 0, oColorCtx .canvas.width-15, oColorCtx .canvas.height); 
+}
+ });
+
       albumlist = [
 ["100 Gecs", "1000 Gecs", "https://images.genius.com/1f76dfd639861c8035ecb09e29aaddf4.636x636x1.jpg"],
 ["Ariana Grande", "thank u, next", "https://images.genius.com/893eb6735abcf6a464cc034a5912d44b.300x300x1.jpg"],
@@ -565,6 +807,7 @@
 ["Weyes Blood", "Titanic Rising", "https://images.genius.com/f14e7ee30ee6ed83dce41a1924ffb5b3.1000x1000x1.jpg"],
 ["Yung Lean", "Stranger", "https://images.genius.com/8de0d3d9d8265302ad988a86774d50dc.1000x1000x1.png"],
       ];
+albumlist.sort();
       albumlistContent = "";
       for (let i = 0; i < albumlist.length; i++) {
         albumlistContent = albumlistContent + "<style>#albumlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+albumlist[i][0]+", <i>"+albumlist[i][1]+"</i></li><img src='"+albumlist[i][2]+"'>"
@@ -576,20 +819,29 @@
       wishfilmlist = [
 
       ];
+      wishfilmlist.sort();
       watchfilmlist = [
-["C'mon C'mon", "https://m.media-amazon.com/images/M/MV5BMzkwZWJhOTUtZTJkMC00OWQ5LTljZDctYzgxNWFiYjEyZjZiXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_FMjpg_UX1000_.jpg"],
-["The Shining", "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-shining-yellow-poster-kultur-arts-studios.jpg"],
-["Pearl", "https://i.ebayimg.com/images/g/WG8AAOSwsohjMGrd/s-l1600.jpg"],
+["  Pearl ", "  https://a.ltrbxd.com/resized/film-poster/8/5/3/8/2/2/853822-pearl-0-230-0-345-crop.jpg?v=471dfc4a24 "],
+["  X ", "  https://a.ltrbxd.com/resized/film-poster/6/8/0/3/5/8/680358-x-0-230-0-345-crop.jpg?v=8ba5e11abf "],
+["  Bodies Bodies Bodies  ", "  https://a.ltrbxd.com/resized/film-poster/4/4/9/4/4/2/449442-bodies-bodies-bodies-0-230-0-345-crop.jpg?v=1dfddd92ac  "],
+["  Nope  ", "  https://pbs.twimg.com/media/FMxubg0WQAgb6-v.jpg "],
+["  Barbarian ", "  https://a.ltrbxd.com/resized/film-poster/8/1/9/6/4/8/819648-barbarian-0-230-0-345-crop.jpg?v=75b067327a "],
+["  C'mon C'mon ", "  https://a.ltrbxd.com/resized/film-poster/5/5/8/8/0/6/558806-c-mon-c-mon-0-230-0-345-crop.jpg?v=edbb87ba0a "],
+["  Jojo Rabbit ", "  https://a.ltrbxd.com/resized/film-poster/4/4/4/6/0/0/444600-jojo-rabbit-0-230-0-345-crop.jpg?v=a5ad083635 "],
+["  Swingers  ", "https://www.themoviedb.org/t/p/w500/rRjWk68kU3a2so4lgr3TKB7Y5vA.jpg"],
+["  The Shining ", "  https://a.ltrbxd.com/resized/sm/upload/7s/m2/bw/d0/caoYMcjUamGoBVy65i1AHJBvdzw-0-230-0-345-crop.jpg?v=88d9d6cce4  "],
       ];
-      filmlistContent = "<li class='listheader'>--  Wishlist  --</li>";;
+      watchfilmlist.sort();
+      filmlistContent = "<li class='listheader'>--  Unwatched  --</li><span>";;
       for (let i = 0; i < wishfilmlist.length; i++) {
         filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+wishfilmlist[i][0]+"</li><img src='"+wishfilmlist[i][1]+"'>"
       }
       filmlistContent = filmlistContent + 
-      "<li class='listheader'>--  Watched  --</li>";;
+      "</span><li class='listheader'>--  Watched  --</li><span>";;
       for (let i = 0; i < watchfilmlist.length; i++) {
         filmlistContent = filmlistContent + "<style>#filmlist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+watchfilmlist[i][0]+"</li><img src='"+watchfilmlist[i][1]+"'>"
       }
+    filmlistContent = filmlistContent + "</span><li style='height: 150px;''></li>"
     document.getElementById("dafilmlist").innerHTML = filmlistContent;
       
 wishgamelist = [
@@ -600,36 +852,63 @@ wishgamelist = [
 ["The Shining", "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/the-shining-yellow-poster-kultur-arts-studios.jpg"],
 ["Pearl", "https://i.ebayimg.com/images/g/WG8AAOSwsohjMGrd/s-l1600.jpg"],
       ];
-      gamelistContent = "<li class='listheader'>--  Wishlist  --</li>";;
+      gamelistContent = "<li class='listheader'>--  Unplayed  --</li><span>";;
       for (let i = 0; i < wishgamelist.length; i++) {
         gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+wishgamelist[i][0]+"</li><img src='"+wishgamelist[i][1]+"'>"
       }
       gamelistContent = gamelistContent + 
-      "<li class='listheader'>--  Played  --</li>";;
+      "</span><li class='listheader'>--  Played  --</li><span>";;
       for (let i = 0; i < playedgamelist.length; i++) {
         gamelistContent = gamelistContent + "<style>#gamelist li.album"+i+":hover + img{display: block;}</style><li class='album"+i+"'>"+playedgamelist[i][0]+"</li><img src='"+playedgamelist[i][1]+"'>"
       }
+      gamelistContent = gamelistContent + "</span><li style='height: 150px;''></li>"
     document.getElementById("dagamelist").innerHTML = gamelistContent;
 
       paperslist = [
-["papera"],
-["paperb"],
-["paperc"],
-["papera"],
-["paperb"],
-["paperc"],
-["papera"],
-["paperb"],
-["paperc"],
+["A", "https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf"],
+["B", "https://web.mit.edu/allanmc/www/benjamin.pdf"]
       ];
-      paperslistContent = '<h2 class="popup-header">Papers</h2> <h4 class="x">X</h4><div style="margin-top: 27px;"></div>';
+      paperslist.sort();
+      paperslistContent = '<h2 class="popup-header">My Papers</h2> <h4 class="x">X</h4><div style="margin-top: 27px;"></div>';
 
       for (let i = 0; i < paperslist.length; i++) {
-        paperslistContent = paperslistContent + "<div class='select' id='clkpaperlist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+paperslist[i][0]+"</h5></div>"
+                $("#clkpaperlist"+i).dblclick(function(){
+                  window.open(playedgamelist[i][1], 'name'); 
+          });
+
+        paperslistContent = paperslistContent + "<div class='select opaper' id='clkpaperlist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+paperslist[i][0]+"</h5></div>"
       }
       paperslistContent = paperslistContent
       document.getElementById("paperlist").innerHTML = paperslistContent;
 
+ $('.opaper').dblclick(function() {
+  var papernum = $(this).attr('id');
+  papernum = papernum.replace(/\D/g,'');
+  window.open(paperslist[papernum][1], '_blank');
+  });
+
+ referenceslist = [
+["What Is It Like to Be a Bat?", "https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf"],
+["Mechanical Reproduction", "https://web.mit.edu/allanmc/www/benjamin.pdf"]
+      ];
+      referenceslist.sort();
+      referenceslistContent = '<h2 class="popup-header">Reference Papers</h2> <h4 class="x">X</h4><div style="margin-top: 27px;"></div>';
+
+      for (let i = 0; i < referenceslist.length; i++) {
+                $("#clkreferencelist"+i).dblclick(function(){
+                  window.open(playedgamelist[i][1], 'name'); 
+          });
+
+        referenceslistContent = referenceslistContent + "<div class='select oreference' id='clkreferencelist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+referenceslist[i][0]+"</h5></div>"
+      }
+      referenceslistContent = referenceslistContent
+      document.getElementById("referencelist").innerHTML = referenceslistContent;
+
+ $('.oreference').dblclick(function() {
+  var referencenum = $(this).attr('id');
+  referencenum = referencenum.replace(/\D/g,'');
+  window.open(referenceslist[referencenum][1], '_blank');
+  });
 
       jQuery(function($){
         // Store content
@@ -656,12 +935,12 @@ wishgamelist = [
         });
       });
 
-      	$("span").dblclick(function(){
-      		$("#home").toggle();
-      	});
-
         $('.x').on("click", function () {
         $(this).parents('div').hide();
+        });
+
+        $('.listheader').on("click", function () {
+        $(this).next("span").toggle();
         });
 
 
@@ -699,6 +978,9 @@ wishgamelist = [
            $("#papers").dblclick(function(){
             $("#paperlist").show();
           });
+           $("#reference").dblclick(function(){
+            $("#referencelist").show();
+          });
 
 
       $("#homeplanning").dblclick(function(){
@@ -707,6 +989,10 @@ wishgamelist = [
           $("#clkdaily").dblclick(function(){
           	$("#daily").show();
           });
+
+      $("#hometheme").dblclick(function(){
+          $("#theme").show();
+        });
 
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
