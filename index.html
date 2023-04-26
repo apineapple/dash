@@ -589,7 +589,7 @@
 
 
     <script>
-
+$('iframe').contents().find('img').css({"border-radius": "0px", "border":"3.5714285714px solid black"});
     /*rt = [];
     rb = [];
     for (let i = 0; i < 3; i++) {
@@ -1174,6 +1174,9 @@ wishgamelist = [
       window.addEventListener("keydown", checkKeyPressed, false);
        function checkKeyPressed(evt) {
           if(evt.keyCode == "13") {
+    $('iframe').contents().find('.fa').css("color", "var(--acolor)");
+    $('iframe').contents().find('body').css("background-color", "var(--bcolor)";
+    $('iframe').contents().find('img').css({"border-radius": "0px", "border":"3.5714285714px solid black"});
           	if ( $("#home").css('display') == 'none' || $("#home").css("visibility") == "hidden"){
           		$("#home").show();
           	}
