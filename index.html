@@ -1036,6 +1036,7 @@ wishgamelist = [
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
        $('iframe').contents().find('.fa').css("color", $(this).val());
+       $('iframe').contents().find('.fa').css("border-color", $(this).val());
       });
       $("#txtcolor").change(function(){
        $("body").get(0).style.setProperty("--bcolor", $(this).val());
@@ -1086,6 +1087,7 @@ wishgamelist = [
        ).mouseleave();
     </script>
     <script>
+    
       	window.onload = function() {
         initDragElement();
         initResizeElement();
@@ -1223,6 +1225,20 @@ wishgamelist = [
           	else if ($("#daily").hasClass("selected")) {}
           	else{
              window.location.reload();
+             /*rt = [];
+    rb = [];
+    for (let i = 0; i < 3; i++) {
+      rtr = Math.floor(Math.random() * 256);
+      rtb = Math.floor(Math.random() * 256);
+      rt.push(rtr);
+      rb.push(rtb);
+    }
+    rtxt = `rgb(${rt[0]},${rt[1]},${rt[2]})`
+    rbkg = `rgb(${rb[0]},${rb[1]},${rb[2]})`
+    $("body").get(0).style.setProperty("--acolor", rtxt);
+    $('iframe').contents().find('.fa').css("color", rtxt);
+      $("body").get(0).style.setProperty("--bcolor", rbkg);
+    $('iframe').contents().find('.fa').css("background-color", rbkg);*/
           	}
           }
        }
