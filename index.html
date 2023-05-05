@@ -1036,7 +1036,7 @@ wishgamelist = [
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
        $('iframe').contents().find('.fa').css("color", $(this).val());
-       $('iframe').contents().find('img').css("border-color", $(this).val());
+       $('iframe').contents().find('.bdcplz').css("border-color", $(this).val());
       });
       $("#txtcolor").change(function(){
        $("body").get(0).style.setProperty("--bcolor", $(this).val());
