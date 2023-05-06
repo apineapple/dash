@@ -1150,7 +1150,7 @@ liElements.forEach((li) => {
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
        $('iframe').contents().find('.fa').css("color", $(this).val());
-       $('iframe').contents().find('.bdcplz').css("border", $(this).val() + "3.5714285714px solid");
+       $('iframe').contents().find('.bdcplz').css("border", "var(--acolor) 3.5714285714px solid");
       });
       $("#txtcolor").change(function(){
        $("body").get(0).style.setProperty("--bcolor", $(this).val());
