@@ -783,6 +783,7 @@ ColorCtx .fillRect(ColorCtx .canvas.width-10, 0, ColorCtx .canvas.width, ColorCt
 
     $("body").get(0).style.setProperty("--acolor", rgb);
     $('iframe').contents().find('.fa').css("color", rgb);
+    $('iframe').contents().find('.bdcplz').css("border-color", rgb);
 
   }
   else if(x >= 200){
@@ -1146,16 +1147,6 @@ liElements.forEach((li) => {
       $("#hometheme").dblclick(function(){
           $("#theme").show();
         });
-
-      $("#bkgcolor").change(function(){
-       $("body").get(0).style.setProperty("--acolor", $(this).val());
-       $('iframe').contents().find('.fa').css("color", $(this).val());
-       $('iframe').contents().find('.bdcplz').css("border", "var(--acolor) 3.5714285714px solid");
-      });
-      $("#txtcolor").change(function(){
-       $("body").get(0).style.setProperty("--bcolor", $(this).val());
-       $('iframe').contents().find('body').css('backgroundColor', $(this).val());
-      });
 
       	$(document).mouseup(function(e)
       {
