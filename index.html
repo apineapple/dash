@@ -224,7 +224,27 @@
         min-width: 300px;
         overflow-y: scroll;
       }
+    #ideaslist{
+        left:  300px;
+        top: 500px;
+        width: 300px;
+        height: 215px;
+        min-height: 215px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
       #daily{
+        left:  600px;
+        top: 150px;
+        text-align: left;
+        width: 300px;
+        height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        overflow-y: scroll;
+      }
+
+      #goals{
         left:  600px;
         top: 150px;
         text-align: left;
@@ -279,6 +299,9 @@
         height: auto;
         width: 100px;
         border: 2.5px solid var(--acolor);
+      }
+      .baselistidea li:hover{
+        text-decoration: none;
       }
       .select{
       	height: 40px;
@@ -366,9 +389,61 @@
         color: var(--acolor);
         text-decoration: line-through;
       }
+
+      #goaldo {
+        display : flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        line-height: 1.4;
+        outline: none;
+      }
+      #goaldo li {
+        list-style: none;
+        padding: 4px 10px;
+        color: var(--acolor);
+      }
+      #goaldo li{
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      #goaldo li:before {
+        content: "a";
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        width: 9px;
+        height: 9px;
+        margin: 4px 15px 0 0;
+        padding: 0 0px;
+        background: var(--bcolor);
+        color: var(--bcolor);
+        font-weight: normal;
+        font-size: .1em;
+        border-radius: 0;
+        border: 2.5px var(--acolor) solid;
+      }
+      #goaldo li.mini {
+        order: 2;
+      }
+      #goaldo li.mini:before {
+        content: "a";
+        background: var(--acolor);
+        color: var(--acolor);
+      }
+
+      #goaldo li.mini {
+        color: var(--acolor);
+        text-decoration: line-through;
+      }
       .listheader{
         text-align: center;
         white-space:pre;
+        text-decoration: none;
       }
       .listheader:hover{
         text-decoration: none !important;
@@ -544,6 +619,14 @@
       <div id="paperlist" class="popup"></div>
       <div id="referencelist" class="popup"></div>
       <div id="referencevidlist" class="popup"></div>
+      <div id="ideaslist" class="popup baselist">
+        <h2 class="popup-header">Ideas.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul class="baselistidea">
+        <li>testing</li>
+      </ul>
+      </div>
 
 
     <div id="planning" class="popup">
@@ -562,7 +645,7 @@
         <i class="fa fa-sticky-note-o"></i>
         <h5>Todo.txt</h5>
       </div>
-      <div class="select" id="">
+      <div class="select" id="clkgoals">
         <i class="fa fa-sticky-note-o"></i>
         <h5>Goals.txt</h5>
       </div>
@@ -577,6 +660,23 @@
       <h4 class="x">X</h4>
       <div style="margin-top: 27px;"></div>
       <ul id="todo" contenteditable="true"></ul>
+    </div>
+
+    <div id="goals" class="popup">
+      <h2 class="popup-header">Goals.txt</h2>
+      <h4 class="x">X</h4>
+      <div style="margin-top: 27px;"></div>
+      <ul id="goaldo">
+        <li>albums (0/100)</li>
+        <li>movies (0/15)</li>
+        <li>books (0/3)</li>
+        <li>pushups at once (10/30)</li>
+        <li>cook</li>
+        <li>go through old drives</li>
+        <li>video</li>
+        <li>organize files</li>
+        <li>dashboard done</li>
+      </ul>
     </div>
 
     <div id="theme" class="popup">
@@ -971,6 +1071,13 @@ wishgamelist = [
         });
       });
 
+const liElements = document.querySelectorAll('li');
+liElements.forEach((li) => {
+  if (li.textContent.includes('!')) {
+    li.classList.add('mini');
+  }
+});
+
         $('.x').on("click", function () {
         $(this).parents('div').hide();
         });
@@ -1020,6 +1127,9 @@ wishgamelist = [
            $("#referencevid").dblclick(function(){
             $("#referencevidlist").show();
           });
+          $("#ideas").dblclick(function(){
+            $("#ideaslist").show();
+          });
 
 
       $("#homeplanning").dblclick(function(){
@@ -1029,6 +1139,10 @@ wishgamelist = [
           	$("#daily").show();
           });
 
+          $("#clkgoals").dblclick(function(){
+            $("#goals").show();
+          });
+
       $("#hometheme").dblclick(function(){
           $("#theme").show();
         });
@@ -1036,7 +1150,7 @@ wishgamelist = [
       $("#bkgcolor").change(function(){
        $("body").get(0).style.setProperty("--acolor", $(this).val());
        $('iframe').contents().find('.fa').css("color", $(this).val());
-       $('iframe').contents().find('.bdcplz').css("border-color", $(this).val());
+       $('iframe').contents().find('.bdcplz').css("border", $(this).val() "3.5714285714px solid");
       });
       $("#txtcolor").change(function(){
        $("body").get(0).style.setProperty("--bcolor", $(this).val());
@@ -1222,7 +1336,7 @@ wishgamelist = [
           	if ( $("#home").css('display') == 'none' || $("#home").css("visibility") == "hidden"){
           		$("#home").show();
           	}
-          	else if ($("#daily").hasClass("selected")) {}
+          	else if ($("#daily").hasClass("selected") || $("#goals").hasClass("selected")) {}
           	else{
              window.location.reload();
              /*rt = [];
