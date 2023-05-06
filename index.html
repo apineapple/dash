@@ -42,6 +42,9 @@
           max-width: 500px;
           height: 215px;
           width: 300px;
+          overflow-y: auto;
+        min-height: 215px;
+        min-width: 300px;
           display: none;
       }
       .popup::-webkit-scrollbar {
@@ -103,7 +106,7 @@
           position: absolute;
           display: inline-block;
       }
-      h2{
+      .popup-header{
       	text-align: center;
       	margin-left: 0px;
       	margin-top: 0px;
@@ -114,7 +117,7 @@
       	padding-bottom: 2.5px;
       	border-bottom: 2.5px solid var(--acolor);
       }
-      h4{
+      .x{
       	color: var(--acolor);
       	position: fixed;
       	margin-top: 5px;
@@ -135,9 +138,7 @@
       	top: 10%;
       	text-align: center;
         height: 400px;
-        width: 300px;
         min-height: 400px;
-        min-width: 300px;
       }
       #music iframe{
       	background-color: var(--bcolor);
@@ -167,114 +168,65 @@
         display: initial;
         left:  30px;
         top: 30px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
       }
       #media{
         left:  500px;
         top: 200px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
       }
       #projects{
         left:  300px;
         top: 500px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
       }
       #planning{
         left:  300px;
         top: 150px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
       #paperlist{
         left:  300px;
         top: 500px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
       #referencelist{
         left:  300px;
         top: 500px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
       #referencevidlist{
         left:  300px;
         top: 500px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
     #ideaslist{
         left:  300px;
         top: 500px;
-        width: 300px;
-        height: 215px;
-        min-height: 215px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
       #daily{
         left:  600px;
         top: 150px;
         text-align: left;
-        width: 300px;
         height: 300px;
         min-height: 300px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
 
       #goals{
         left:  600px;
         top: 150px;
         text-align: left;
-        width: 300px;
         height: 300px;
         min-height: 300px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
 
       #theme{ 
         left:  600px;
         top: 150px;
         text-align: left;
-        width: 300px;
         height: 350px;
         min-height: 350px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
 
       .baselist{
         left:  600px;
         top: 150px;
         text-align: left;
-        width: 300px;
         height: 300px;
         min-height: 300px;
-        min-width: 300px;
-        overflow-y: scroll;
       }
       .baselist ul {
         display : flex;
@@ -309,32 +261,6 @@
       	width: 100%;
       	border-bottom: 2.5px solid var(--acolor);
       }
-      		input[type=color] {
-          display: none;
-      }
-      .circle{
-         border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        background-color: var(--acolor);
-        display:inline-block;
-      }
-      .semi{
-         border-radius: 12rem 0 0 12rem;
-        width: 10px;
-        height: 20px;
-        background-color: var(--bcolor);
-        display:inline-block;
-        margin-left: -25px;
-        margin-bottom: 5px;
-        }
-        #colorpicker{
-        	display: inline-block;
-        	left: 28.25px;
-        	top: 177px;
-        	position: absolute;
-        	z-index: 10000;
-        }
         *:focus {
           outline: none;
       }
@@ -706,24 +632,6 @@
 
 
     <script>
-//$('iframe').contents().find('img').css({"border-radius": "0px", "border":"3.5714285714px solid black"});
-   /* rt = [];
-    rb = [];
-    for (let i = 0; i < 3; i++) {
-      rtr = Math.floor(Math.random() * 256);
-      rtb = Math.floor(Math.random() * 256);
-      rt.push(rtr);
-      rb.push(rtb);
-    }
-    rtxt = `rgb(${rt[0]},${rt[1]},${rt[2]})`
-    rbkg = `rgb(${rb[0]},${rb[1]},${rb[2]})`
-    $("body").get(0).style.setProperty("--acolor", rtxt);
-    $('iframe').contents().find('.fa').css("color", rtxt);
-      $("body").get(0).style.setProperty("--bcolor", rbkg);
-    $('iframe').contents().find('.fa').css("background-color", rbkg);
-
-
-*/
 $('#othingytongler').on("click", function () {
   $("#bkgcanvas").hide();
   $("#txtcanvas").show();
@@ -1096,8 +1004,6 @@ liElements.forEach((li) => {
         $(".select").not(this).css({"background-color":"var(--bcolor)"});
         $(".select").not(this).find("h5").css({"color":"var(--acolor)"});
         $(".select").not(this).find("i").css({"color":"var(--acolor)"});
-        $("#bkgcolor_front").css({"background-color":"var(--bcolor)"});
-        $("#txtcolor_front").css({"background-color":"var(--acolor)"});
         });
 
       $("#homemedia").dblclick(function(){
@@ -1190,8 +1096,6 @@ liElements.forEach((li) => {
        	}
            }
        ).mouseleave();
-    </script>
-    <script>
     
       	window.onload = function() {
         initDragElement();
@@ -1316,11 +1220,7 @@ liElements.forEach((li) => {
         }
       }
 
- /*$('iframe').contents().find('.fa').css("color", "var(--acolor)");
-    $('iframe').contents().find('body').css("background-color", "var(--bcolor)";
-    $('iframe').contents().find('img').css({"border-radius": "0px", "border":"3.5714285714px solid black"});*/
-    </script>
-    <script>
+
       window.addEventListener("keydown", checkKeyPressed, false);
        function checkKeyPressed(evt) {
           if(evt.keyCode == "13") {
