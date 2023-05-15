@@ -134,8 +134,9 @@
       	margin-left: 80px;
       }
       #music{
-      	left:  50%;
-      	top: 10%;
+          display: initial;
+      	right: 30px;
+      	top: 20px;
       	text-align: center;
         height: 400px;
         min-height: 400px;
@@ -198,8 +199,9 @@
         top: 500px;
       }
       #daily{
-        left:  600px;
-        top: 150px;
+          display: initial;
+        right:  400px;
+        top: 250px;
         text-align: left;
         height: 300px;
         min-height: 300px;
@@ -223,6 +225,14 @@
 
       .baselist{
         left:  600px;
+        top: 150px;
+        text-align: left;
+        height: 300px;
+        min-height: 300px;
+      }
+      #albumlist{
+          display: initial;
+          left:  400px;
         top: 150px;
         text-align: left;
         height: 300px;
@@ -563,10 +573,6 @@
         <i class="fa fa-floppy-o"></i>
         <h5>Calendar.xml</h5>
       </div>
-      <div class="select" id="">
-        <i class="fa fa-floppy-o"></i>
-        <h5>ReachOut.xml</h5>
-      </div>
       <div class="select" id="clkdaily">
         <i class="fa fa-sticky-note-o"></i>
         <h5>Todo.txt</h5>
@@ -574,10 +580,6 @@
       <div class="select" id="clkgoals">
         <i class="fa fa-sticky-note-o"></i>
         <h5>Goals.txt</h5>
-      </div>
-      <div class="select" id="">
-        <i class="fa fa-sticky-note-o"></i>
-        <h5>Birthday.txt</h5>
       </div>
     </div>
 
@@ -692,6 +694,9 @@ ColorCtx .fillRect(ColorCtx .canvas.width-10, 0, ColorCtx .canvas.width, ColorCt
     $("body").get(0).style.setProperty("--acolor", rgb);
     $('iframe').contents().find('.fa').css("color", rgb);
     $('iframe').contents().find('.bdcplz').css("border-color", rgb);
+          let el = document.querySelector('body');
+let style = window.getComputedStyle(el);
+var avalue = style.getPropertyValue('--acolor');
 
   }
   else if(x >= 200){
@@ -767,6 +772,10 @@ oColorCtx .fillRect(oColorCtx .canvas.width-10, 0, oColorCtx .canvas.width, oCol
 
     $("body").get(0).style.setProperty("--bcolor", orgb);
     $('iframe').contents().find('body').css("background-color", orgb);
+
+              let oel = document.querySelector('body');
+let ostyle = window.getComputedStyle(oel);
+var bvalue = ostyle.getPropertyValue('--bcolor');
 
   }
   else if(ox >= 200){
@@ -916,18 +925,38 @@ wishgamelist = [
   });
 
  referenceslist = [
-["What Is It Like to Be a Bat?", "https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf"],
-["Mechanical Reproduction", "https://web.mit.edu/allanmc/www/benjamin.pdf"]
+["David Hume","Treatise on Nature ","https://drive.google.com/file/d/1snPp50Odf6upCgKRPsYMSaKW0hqRO-bX/view?usp=sharing"],
+["Steven Pinker ","Moral Instinct","https://drive.google.com/file/d/1RpGWpCSqfaUK86n5rdktNDjjeezFOeX7/view?usp=sharing"],
+["G.E. Moore","Definition of Good ","https://docs.google.com/document/d/1ff6b__uotOedCM3IBzkoCSIxaUp0fgEV/edit"],
+["Frederick Nietzsche","Truth and Lies","https://drive.google.com/file/d/1ITReB4geTfntmKavANxrHcCtXW-V_SJ-/view?usp=sharing"],
+["Frederick Nietzsche","Ecce Homo Intro","https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Frederick Nietzsche","Beyond Good and Evil","https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Frederick Nietzsche","Metaphysical Need", " https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Frederick Nietzsche","Will to Power ","https://docs.google.com/document/d/1UHv5MuvDOWDqTjcXLdq6o0ckVh8O2Cf2/edit"],
+["Frederick Nietzsche","Sign-Language of Emotions","https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Frederick Nietzsche","Genealogy of Morals","https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Alasdair MacIntyre ","After Virtue", " https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Alasdair MacIntyre ","After Virtue Pt. 2","https://docs.google.com/document/d/1c0gFppIkRMppQZ-53EXCS5A9kAJZniNd/edit"],
+["Rene Descartes","Introduction", " https://docs.google.com/document/d/1_oSeZJW2gjEGIxTe5ulmeKOvPyWnK5uj/edit"],
+["Martin Heidegger", " Modes of Encounter ","https://docs.google.com/document/d/1NAjSpEjO63Wv7HbmHGv9tn99HM87-nQ3/edit"],
+["Tdez","Phenomenology: The Gist ","https://docs.google.com/document/d/12U8gFJAGyIFZ-V2oK3DMhVpRngm-5p2M/edit"],
+["Martin Heidegger", " Dasein", " https://docs.google.com/document/d/1Fw0wIMf7gH6t6EskQmStY8oMkuDhasEX/edit"],
+["Tdez","Phenomenological Property","https://docs.google.com/document/d/16SRHqNuO5W-BF9Cjqisx8Qg_5WpIKEzA/edit"],
+["Martin Heidegger", " Metaphysics", " https://docs.google.com/document/d/1SXgfiRJ-m8nSE7eP0onuGTD9GnPGITGm/edit"],
+["Ludwig Wittgenstein","Ethics", " https://drive.google.com/drive/u/0/folders/17QoKbFgif2V3FYuxfftKhbUS3W_Oz1wr"],
+["Tdez","Wittgenstein", " https://docs.google.com/document/d/13XlWNDAY291brAqlp_8rahgw2MkChJGn/edit"],
+["Thomas Nagel", " Modern Perspectivism","https://warwick.ac.uk/fac/cross_fac/iatl/study/ugmodules/humananimalstudies/lectures/32/nagel_bat.pdf"],
+["Walter Benjamin","Mechanical Reproduction ","https://web.mit.edu/allanmc/www/benjamin.pdf"],
       ];
       referenceslist.sort();
       referenceslistContent = '<h2 class="popup-header">Reference Papers</h2> <h4 class="x">X</h4><div style="margin-top: 27px;"></div>';
 
       for (let i = 0; i < referenceslist.length; i++) {
                 $("#clkreferencelist"+i).dblclick(function(){
-                  window.open(referenceslist[i][1], 'name'); 
+                  window.open(referenceslist[i][2], 'name'); 
           });
 
-        referenceslistContent = referenceslistContent + "<div class='select oreference' id='clkreferencelist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+referenceslist[i][0]+"</h5></div>"
+        referenceslistContent = referenceslistContent + "<div class='select oreference' id='clkreferencelist"+i+"'><i class='fa fa-sticky-note-o'></i><h5>"+referenceslist[i][0]+", "+referenceslist[i][1]+"</h5></div>"
       }
       referenceslistContent = referenceslistContent
       document.getElementById("referencelist").innerHTML = referenceslistContent;
@@ -1101,6 +1130,13 @@ liElements.forEach((li) => {
         initDragElement();
         initResizeElement();
       };
+
+     document.getElementById('tnt').contentWindow.location.reload() == function() {
+          console.log("ayy");
+              $('iframe').contents().find('.fa').css("color", avalue);
+    $('iframe').contents().find('.bdcplz').css("border-color", avalue);
+        $('iframe').contents().find('body').css("background-color", bvalue);
+      }
 
       function initDragElement() {
         var pos1 = 0,
